@@ -1,17 +1,19 @@
-import React from 'react'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
-import Hero from '../components/hero'
-import ArticlePreview from '../components/article-preview'
+import React from 'react';
+import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
+import Hero from '../components/hero';
+import ArticlePreview from '../components/article-preview';
+import Layout from '../components/layout';
 
 class RootIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
+    const { data } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allContentfulBlogPost.edges;
+    const [author] = data.allContentfulPerson.edges;
 
     return (
-      <div style={{ background: '#fff' }}>
+      <Layout location={this.props.location} style={{ background: '#fff' }}>
         <Helmet title={siteTitle} />
         <Hero data={author.node} />
         <div className="wrapper">
@@ -22,19 +24,24 @@ class RootIndex extends React.Component {
                 <li key={node.slug}>
                   <ArticlePreview article={node} />
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
-      </div>
-    )
+      </Layout>
+    );
   }
 }
 
-export default RootIndex
+export default RootIndex;
 
 export const pageQuery = graphql`
   query HomeQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
       edges {
         node {
@@ -44,7 +51,7 @@ export const pageQuery = graphql`
           tags
           heroImage {
             sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-             ...GatsbyContentfulSizes_withWebp
+              ...GatsbyContentfulSizes_withWebp
             }
           }
           description {
@@ -55,12 +62,16 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulPerson(filter: { id: { eq: "c15jwOBqpxqSAOy2eOO4S0m" } }) {
+    allContentfulPerson(
+      filter: { id: { eq: "3c56de93-d279-5889-8563-5298ad412080" } }
+    ) {
       edges {
         node {
           name
           shortBio {
-            shortBio
+            childMarkdownRemark {
+              html
+            }
           }
           title
           heroImage: image {
@@ -77,4 +88,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

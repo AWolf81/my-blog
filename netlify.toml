@@ -6,5 +6,5 @@
   command = "gatsby build"
   Functions = ""
 
-[context.devel]
+[context.devel.environment]
   NODE_ENV = "DEVELOPMENT"

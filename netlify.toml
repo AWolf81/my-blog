@@ -2,5 +2,9 @@
   ID = "b3138fe6-d80a-4ce7-b2bc-06bc90ce383c"
 
 [Build]
-  Publish = ""
+  Publish = "public/"
+  command = "yarn build"
   Functions = ""
+
+[context.devel]
+  NODE_ENV = "DEVELOPMENT"

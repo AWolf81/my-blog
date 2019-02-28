@@ -9,7 +9,10 @@ try {
 contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID || contentfulConfig.spaceId,
   accessToken:
-    process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken,
+    process.env.CONTENTFUL_DELIVERY_TOKEN &&
+    !process.env.NODE_ENV !== 'DEVELOPMENT'
+      ? process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken
+      : process.env.CONTENTFUL_PREVIEW_TOKEN || contentfulConfig.previewToken,
 };
 
 const { spaceId, accessToken } = contentfulConfig;
@@ -21,7 +24,6 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
-  // pathPrefix: '/gatsby-contentful-starter',
   siteMetadata: {
     siteURL: 'https://blog.alexanderwolf.tech/',
     title: 'Blog - Alexander Wolf',

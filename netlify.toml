@@ -3,7 +3,7 @@
 
 [Build]
   Publish = "public/"
-  command = "yarn build"
+  command = "gatsby build"
   Functions = ""
 
 [context.devel]

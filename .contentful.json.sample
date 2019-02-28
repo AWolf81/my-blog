@@ -1,5 +1,5 @@
 {
   "spaceId": "...",
   "accessToken": "...",
-  "environment": "devel"
+  "previewToken": "..."
 }

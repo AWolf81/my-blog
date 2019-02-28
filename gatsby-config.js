@@ -8,9 +8,12 @@ try {
 // Overwrite the Contentful config with environment variables if they exist
 contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID || contentfulConfig.spaceId,
+  host:
+    process.env.NODE_ENV === 'production'
+      ? 'cdn.contentful.com'
+      : 'preview.contentful.com',
   accessToken:
-    process.env.CONTENTFUL_DELIVERY_TOKEN &&
-    !process.env.NODE_ENV !== 'DEVELOPMENT'
+    process.env.NODE_ENV === 'production'
       ? process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken
       : process.env.CONTENTFUL_PREVIEW_TOKEN || contentfulConfig.previewToken,
 };

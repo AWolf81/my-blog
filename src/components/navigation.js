@@ -1,16 +1,15 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import BackButton from './BackButton';
+
 import styles from './navigation.module.css';
 
 export default () => (
   <nav role="navigation">
     <ul className={styles.navigation}>
-      <li className={styles.navigationItem}>
-        <Link to="/">Home</Link>
-      </li>
-      <li className={styles.navigationItem}>
-        <Link to="/blog/">Blog</Link>
-      </li>
+      <Link to="/">
+        <BackButton>back</BackButton>
+      </Link>
     </ul>
   </nav>
 );

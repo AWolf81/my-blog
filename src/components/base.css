@@ -70,3 +70,9 @@ a {
 .list-inline li {
   display: inline-block;
 }
+
+.language-shell :before,
+.language-bash :before {
+  content: '$ ';
+  font-weight: bold;
+}

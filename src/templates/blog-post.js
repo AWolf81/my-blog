@@ -16,11 +16,15 @@ class BlogPostTemplate extends React.Component {
       <Layout location={this.props.location} style={{ background: '#fff' }}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
         <div className={heroStyles.hero}>
-          <Img
-            className={heroStyles.heroImage}
-            alt={post.title}
-            sizes={post.heroImage.sizes}
-          />
+          {post.heroImage ? (
+            <Img
+              className={heroStyles.heroImage}
+              alt={post.title}
+              sizes={post.heroImage.sizes}
+            />
+          ) : (
+            <strong>Hero image missing!!</strong>
+          )}
         </div>
         <div className="wrapper">
           <h1 className="section-headline">{post.title}</h1>
@@ -29,7 +33,8 @@ class BlogPostTemplate extends React.Component {
               display: 'block',
             }}
           >
-            {post.publishDate}
+            {post.publishDate} -{' '}
+            {post.body.childMarkdownRemark.fields.readingTime.text}
           </p>
           <div
             dangerouslySetInnerHTML={{
@@ -62,6 +67,11 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           html
+          fields {
+            readingTime {
+              text
+            }
+          }
         }
       }
     }

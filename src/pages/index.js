@@ -11,6 +11,8 @@ class RootIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allContentfulBlogPost.edges;
     const [author] = data.allContentfulPerson.edges;
+    const postReadingTime = node =>
+      `${node.body.childMarkdownRemark.fields.readingTime.text}`;
 
     return (
       <Layout location={this.props.location} style={{ background: '#fff' }}>
@@ -22,7 +24,10 @@ class RootIndex extends React.Component {
             {posts.map(({ node }) => {
               return (
                 <li key={node.slug}>
-                  <ArticlePreview article={node} />
+                  <ArticlePreview
+                    article={node}
+                    readingTime={postReadingTime(node)}
+                  />
                 </li>
               );
             })}
@@ -52,6 +57,16 @@ export const pageQuery = graphql`
           heroImage {
             sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
               ...GatsbyContentfulSizes_withWebp
+            }
+          }
+          body {
+            childMarkdownRemark {
+              html
+              fields {
+                readingTime {
+                  text
+                }
+              }
             }
           }
           description {

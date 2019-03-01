@@ -1,20 +1,31 @@
 .navigation {
+  position: absolute;
+  top: 1em;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   list-style: none;
   padding: 0;
   margin: 0;
   height: 20vh;
-  max-height: 100px;
+  max-height: 60px;
   font-size: 1.25em;
+  z-index: +1;
 }
 
 .navigationItem {
   display: inline-flex;
   align-items: center;
   margin: 0 1em;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1em;
+  border-radius: 5px;
 }
 
 .navigationItem a {
   color: currentColor;
+}
+
+.navigation li:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
 }

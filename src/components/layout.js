@@ -5,11 +5,11 @@ import Navigation from '../components/navigation';
 
 class Template extends React.Component {
   render() {
-    const { children } = this.props;
+    const { children, location } = this.props;
 
     return (
       <Container>
-        <Navigation />
+        {location.pathname !== '/' && <Navigation />}
         {children}
       </Container>
     );

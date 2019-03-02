@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import { HeroImage, Wrapper as HeroWrapper } from '../components/Hero/Hero';
+import { Wrapper as MainWrapper, SectionHeadline } from '../pages';
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -21,8 +22,8 @@ class BlogPostTemplate extends React.Component {
             <strong>Hero image missing!!</strong>
           )}
         </HeroWrapper>
-        <div className="wrapper">
-          <h1 className="section-headline">{post.title}</h1>
+        <MainWrapper>
+          <SectionHeadline>{post.title}</SectionHeadline>
           <p
             style={{
               display: 'block',
@@ -35,7 +36,7 @@ class BlogPostTemplate extends React.Component {
               __html: post.body.childMarkdownRemark.html,
             }}
           />
-        </div>
+        </MainWrapper>
       </Layout>
     );
   }

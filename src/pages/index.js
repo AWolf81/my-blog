@@ -35,12 +35,13 @@ class RootIndex extends React.Component {
   }
 }
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   width: calc(100% - 10vmin);
   margin: 0 auto;
   padding: 5vmin 0;
 `;
-const SectionHeadline = styled.h2`
+
+export const SectionHeadline = styled.h2`
   padding: 0 0 0.4em 0;
   margin: 0 0 5vmin 0;
   border-bottom: 1px solid #ddd;

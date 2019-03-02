@@ -104,5 +104,11 @@ module.exports = {
         cookieDomain: 'alexanderwolf.tech',
       },
     },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
+      },
+    },
   ],
 };

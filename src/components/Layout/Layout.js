@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/base.css';
 import MainPane from '../MainPane';
 import Navigation from '../Navigation';
 

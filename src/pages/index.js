@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
+import baseStyles from '../styles/base.css';
 
 import Hero from '../components/Hero';
 import ArticlePreview from '../components/ArticlePreview';
@@ -13,27 +14,39 @@ class RootIndex extends React.Component {
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allContentfulBlogPost.edges;
     const [author] = data.allContentfulPerson.edges;
+    const postReadingTime = node =>
+      `${node.body.childMarkdownRemark.fields.readingTime.text}`;
 
     return (
-      <Layout location={this.props.location} style={{ background: '#fff' }}>
-        <Helmet title={siteTitle} />
-        <Hero data={author.node} />
-        <Wrapper>
-          <SectionHeadline>Recent articles</SectionHeadline>
-          <ArticleList>
-            {posts.map(({ node }) => {
-              return (
-                <li key={node.slug}>
-                  <ArticlePreview article={node} />
-                </li>
-              );
-            })}
-          </ArticleList>
-        </Wrapper>
-      </Layout>
+      <Fragment>
+        <GlobalStyle />
+        <Layout location={this.props.location} style={{ background: '#fff' }}>
+          <Helmet title={siteTitle} />
+          <Hero data={author.node} />
+          <Wrapper>
+            <SectionHeadline>Recent articles</SectionHeadline>
+            <ArticleList>
+              {posts.map(({ node }) => {
+                return (
+                  <li key={node.slug}>
+                    <ArticlePreview
+                      article={node}
+                      readingTime={postReadingTime(node)}
+                    />
+                  </li>
+                );
+              })}
+            </ArticleList>
+          </Wrapper>
+        </Layout>
+      </Fragment>
     );
   }
 }
+
+export const GlobalStyle = createGlobalStyle`
+  ${css(baseStyles)};
+`;
 
 export const Wrapper = styled.div`
   width: calc(100% - 10vmin);
@@ -74,6 +87,16 @@ export const pageQuery = graphql`
           heroImage {
             sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
               ...GatsbyContentfulSizes_withWebp
+            }
+          }
+          body {
+            childMarkdownRemark {
+              html
+              fields {
+                readingTime {
+                  text
+                }
+              }
             }
           }
           description {

@@ -11,7 +11,7 @@ export default ({ data }) => (
         {data.title}
         <span>{data.readingTime}</span>
       </Title>
-      <p
+      <div
         dangerouslySetInnerHTML={{
           __html: data.shortBio.childMarkdownRemark.html,
         }}

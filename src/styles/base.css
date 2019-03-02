@@ -1,3 +1,5 @@
+@import 'code-highlight.css';
+
 @font-face {
   font-family: 'Avenir';
   font-weight: 400;
@@ -31,6 +33,7 @@ a {
   color: currentColor;
 }
 
+<<<<<<< HEAD:src/components/base.css
 .wrapper {
   width: calc(100% - 10vmin);
   margin: 0 auto;
@@ -69,4 +72,10 @@ a {
 
 .list-inline li {
   display: inline-block;
+=======
+.language-shell :before,
+.language-bash :before {
+  content: '$ ';
+  font-weight: bold;
+>>>>>>> 80e4b4e... Restructured & changed to styled-components:src/styles/base.css
 }

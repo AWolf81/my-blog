@@ -1,9 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
-import Hero from '../components/hero';
-import ArticlePreview from '../components/article-preview';
-import Layout from '../components/layout';
+import styled from 'styled-components';
+
+import Hero from '../components/Hero';
+import ArticlePreview from '../components/ArticlePreview';
+import Layout from '../components/Layout';
 
 class RootIndex extends React.Component {
   render() {
@@ -16,9 +18,9 @@ class RootIndex extends React.Component {
       <Layout location={this.props.location} style={{ background: '#fff' }}>
         <Helmet title={siteTitle} />
         <Hero data={author.node} />
-        <div className="wrapper">
+        <Wrapper>
           <h2 className="section-headline">Recent articles</h2>
-          <ul className="article-list">
+          <ArticleList>
             {posts.map(({ node }) => {
               return (
                 <li key={node.slug}>
@@ -26,12 +28,31 @@ class RootIndex extends React.Component {
                 </li>
               );
             })}
-          </ul>
-        </div>
+          </ArticleList>
+        </Wrapper>
       </Layout>
     );
   }
 }
+
+const Wrapper = styled.div`
+  width: calc(100% - 10vmin);
+  margin: 0 auto;
+  padding: 5vmin 0;
+`;
+const SectionHeadline = styled.h2`
+  padding: 0 0 0.4em 0;
+  margin: 0 0 5vmin 0;
+  border-bottom: 1px solid #ddd;
+`;
+const ArticleList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 5vmin;
+`;
 
 export default RootIndex;
 

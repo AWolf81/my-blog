@@ -1,10 +1,9 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
-import heroStyles from '../components/hero.module.css';
+import Layout from '../components/Layout';
+import { HeroImage, Wrapper as HeroWrapper } from '../components/Hero/Hero';
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -15,13 +14,13 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location} style={{ background: '#fff' }}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        <div className={heroStyles.hero}>
-          <Img
-            className={heroStyles.heroImage}
-            alt={post.title}
-            sizes={post.heroImage.sizes}
-          />
-        </div>
+        <HeroWrapper>
+          {post.heroImage ? (
+            <HeroImage alt={post.title} sizes={post.heroImage.sizes} />
+          ) : (
+            <strong>Hero image missing!!</strong>
+          )}
+        </HeroWrapper>
         <div className="wrapper">
           <h1 className="section-headline">{post.title}</h1>
           <p

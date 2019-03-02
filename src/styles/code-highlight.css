@@ -1,0 +1,11 @@
+/* .gatsby-highlight {
+
+} */
+
+.gatsby-highlight code[class*='language-'] {
+  display: inline-block;
+  overflow: hidden;
+  white-space: pre-wrap;
+  max-width: 100%;
+  word-wrap: break-word;
+}

@@ -1,17 +1,16 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import Img from 'gatsby-image';
-
-import styles from './article-preview.module.css';
+import styled from 'styled-components';
 
 export default ({ article, readingTime }) => (
-  <div className={styles.preview}>
+  <div>
     <Link to={`/${article.slug}`}>
       <Img alt="" sizes={article.heroImage.sizes} />
     </Link>
-    <h3 className={styles.previewTitle}>
+    <PreviewTitle>
       <Link to={`/${article.slug}`}>{article.title}</Link>
-    </h3>
+    </PreviewTitle>
     <small>
       {article.publishDate} - {readingTime}
     </small>
@@ -22,3 +21,21 @@ export default ({ article, readingTime }) => (
     />
   </div>
 );
+
+const PreviewTitle = styled.h3`
+  font-size: 1.5em;
+`;
+
+/*
+ // wasn't used in starter
+.tag {
+  color: #A0A0A0;
+  text-decoration: none;
+  display: inline-block;
+  padding: .33333rem .5rem;
+  line-height: 1;
+  border-radius: 2px;
+  border: 1px solid #A0A0A0;
+  margin-right: .5em;
+}
+*/

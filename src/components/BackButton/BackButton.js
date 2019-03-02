@@ -12,12 +12,17 @@ export default ({ children }) => (
 );
 
 const Wrapper = styled.li`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   margin: 0 1em;
   background: rgba(255, 255, 255, 0.7);
   padding: 1em;
   border-radius: 5px;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+  }
 `;
 
 const Icon = styled(IconBase)`

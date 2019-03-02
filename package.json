@@ -1,11 +1,11 @@
 {
-  "name": "contentful-starter-gatsby-blog",
-  "description": "Contentful Gatsby Starter Blog",
+  "name": "my-blog",
+  "description": "Tech Blog from Alexander Wolf",
   "private": true,
   "version": "0.0.1",
-  "author": "Contentful <opensource@contentful.com>",
+  "author": "AWolf81 <awolf2904@gmail.com>",
   "bugs": {
-    "url": "https://github.com/contentful/starter-gatsby-blog/issues"
+    "url": "https://github.com/AWolf81/my-blog/issues"
   },
   "dependencies": {
     "gatsby": "2.1.18",
@@ -28,7 +28,7 @@
     "react-icons-kit": "1.2.1",
     "styled-components": "4.1.3"
   },
-  "homepage": "https://github.com/contentful/starter-gatsby-blog#readme",
+  "homepage": "https://blog.alexanderwolf.tech",
   "keywords": [
     "gatsby",
     "contentful",
@@ -38,7 +38,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/contentful/starter-gatsby-blog.git"
+    "url": "git+https://github.com/AWolf81/my-blog.git"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=DEVELOPMENT gatsby develop",

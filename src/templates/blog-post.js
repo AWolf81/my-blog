@@ -21,33 +21,6 @@ class BlogPostTemplate extends React.Component {
     };
 
     return (
-<<<<<<< HEAD
-      <Layout location={this.props.location} style={{ background: '#fff' }}>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
-        <HeroWrapper>
-          {post.heroImage ? (
-            <HeroImage alt={post.title} sizes={post.heroImage.sizes} />
-          ) : (
-            <strong>Hero image missing!!</strong>
-          )}
-        </HeroWrapper>
-        <MainWrapper>
-          <SectionHeadline>{post.title}</SectionHeadline>
-          <p
-            style={{
-              display: 'block',
-            }}
-          >
-            {post.publishDate}
-          </p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: post.body.childMarkdownRemark.html,
-            }}
-          />
-        </MainWrapper>
-      </Layout>
-=======
       <Fragment>
         <GlobalStyle />
         <Layout location={this.props.location}>
@@ -91,7 +64,6 @@ class BlogPostTemplate extends React.Component {
           </MainWrapper>
         </Layout>
       </Fragment>
->>>>>>> ea6de32... added share & comments
     );
   }
 }

@@ -38,8 +38,8 @@ const config = {
       options: {
         plugins: [
           `@johnlindquist/gatsby-remark-embed-codesandbox`,
-          `gatsby-remark-social-cards`,
           `gatsby-remark-reading-time`,
+          `@weknow/gatsby-remark-twitter`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

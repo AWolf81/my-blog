@@ -1,4 +1,7 @@
 let contentfulConfig;
+require('dotenv').config();
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 try {
   // Load the Contentful config from the .contentful.json
@@ -8,14 +11,10 @@ try {
 // Overwrite the Contentful config with environment variables if they exist
 contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID || contentfulConfig.spaceId,
-  host:
-    process.env.NODE_ENV === 'production'
-      ? 'cdn.contentful.com'
-      : 'preview.contentful.com',
-  accessToken:
-    process.env.NODE_ENV === 'production'
-      ? process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken
-      : process.env.CONTENTFUL_PREVIEW_TOKEN || contentfulConfig.previewToken,
+  host: isProduction ? 'cdn.contentful.com' : 'preview.contentful.com',
+  accessToken: isProduction
+    ? process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken
+    : process.env.CONTENTFUL_PREVIEW_TOKEN || contentfulConfig.previewToken,
 };
 
 const { spaceId, accessToken } = contentfulConfig;
@@ -26,7 +25,7 @@ if (!spaceId || !accessToken) {
   );
 }
 
-module.exports = {
+const config = {
   siteMetadata: {
     twitterHandle: '@awolf81',
     url: 'https://blog.alexanderwolf.tech/',
@@ -96,21 +95,41 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-135362415-1',
-        // Setting this parameter is optional
-        anonymize: true,
-        // Setting this parameter is also optional
-        respectDNT: true,
-        cookieDomain: 'alexanderwolf.tech',
-      },
-    },
-    {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
       },
     },
+    {
+      resolve: `@debiki/gatsby-plugin-talkyard`,
+      options: {
+        talkyardServerUrl: 'https://blog-awolf.talkyard.io',
+      },
+    },
   ],
 };
+
+// optional plugins or production only plugins
+
+if (isProduction) {
+  // Tracking only in production
+  // we're tracking with-out ip logging
+  // Todo: Add an opt-out button
+  const trackingId = process.env.GOOGLE_TRACKING_ID;
+
+  if (trackingId) {
+    config.plugins.push({
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: trackingId,
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: true,
+        cookieDomain: process.env.GOOGLE_COOKIE_DOMAIN,
+      },
+    });
+  }
+}
+
+module.exports = config;

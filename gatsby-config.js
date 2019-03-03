@@ -100,12 +100,6 @@ const config = {
         // Add any options here
       },
     },
-    {
-      resolve: `@debiki/gatsby-plugin-talkyard`,
-      options: {
-        talkyardServerUrl: 'https://blog-awolf.talkyard.io',
-      },
-    },
   ],
 };
 

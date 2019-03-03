@@ -28,6 +28,8 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
+    twitterHandle: '@awolf81',
+    url: 'https://blog.alexanderwolf.tech/',
     siteURL: 'https://blog.alexanderwolf.tech/',
     title: 'Blog - Alexander Wolf',
   },

@@ -1,12 +1,15 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
+
 import styled, { createGlobalStyle, css } from 'styled-components';
 import baseStyles from '../styles/base.css';
 
 import Hero from '../components/Hero';
 import ArticlePreview from '../components/ArticlePreview';
 import Layout from '../components/Layout';
+
+import { COLORS } from '../constants';
 
 class RootIndex extends React.Component {
   render() {
@@ -20,7 +23,7 @@ class RootIndex extends React.Component {
     return (
       <Fragment>
         <GlobalStyle />
-        <Layout location={this.props.location} style={{ background: '#fff' }}>
+        <Layout location={this.props.location}>
           <Helmet title={siteTitle} />
           <Hero data={author.node} />
           <Wrapper>
@@ -45,7 +48,26 @@ class RootIndex extends React.Component {
 }
 
 export const GlobalStyle = createGlobalStyle`
-  ${css(baseStyles)};
+  /* ${css(baseStyles)}; */
+
+  @font-face {
+  font-family: 'Avenir';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/avenir-400.woff2') format('woff2');
+  font-display: swap;
+}
+
+body {
+  font-family: 'Avenir', Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  line-height: 1.65;
+  color: ${COLORS.black[100]};
+  /* color: #373f49; */
+  /* background: #eee; */
+  background: ${COLORS.lightGray[100]};
+  margin: 0;
+}
 `;
 
 export const Wrapper = styled.div`
@@ -59,6 +81,7 @@ export const SectionHeadline = styled.h2`
   margin: 0 0 5vmin 0;
   border-bottom: 1px solid #ddd;
 `;
+
 const ArticleList = styled.ul`
   margin: 0;
   padding: 0;

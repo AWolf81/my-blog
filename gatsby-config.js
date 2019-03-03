@@ -29,7 +29,7 @@ const config = {
   siteMetadata: {
     twitterHandle: '@awolf81',
     url: 'https://blog.alexanderwolf.tech/',
-    siteURL: 'https://blog.alexanderwolf.tech/',
+    siteUrl: 'https://blog.alexanderwolf.tech/',
     title: 'Blog - Alexander Wolf',
   },
   plugins: [
@@ -37,6 +37,7 @@ const config = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-social-cards`,
           `gatsby-remark-reading-time`,
           {
             resolve: `gatsby-remark-prismjs`,

@@ -37,6 +37,7 @@ const config = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `@johnlindquist/gatsby-remark-embed-codesandbox`,
           `gatsby-remark-social-cards`,
           `gatsby-remark-reading-time`,
           {

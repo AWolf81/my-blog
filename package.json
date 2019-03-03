@@ -8,6 +8,7 @@
     "url": "https://github.com/AWolf81/my-blog/issues"
   },
   "dependencies": {
+    "@johnlindquist/gatsby-remark-embed-codesandbox": "0.0.3",
     "babel-plugin-styled-components": "1.10.0",
     "disqus-react": "1.0.5",
     "dotenv": "6.2.0",

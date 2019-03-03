@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
+import { GlobalStyle } from './index';
 
 export default ({ location }) => (
-  <Layout location={location} style={{ background: '#fff' }}>
+  <Layout location={location}>
+    <GlobalStyle />
     <Wrapper>
       <NotFoundNumber>404</NotFoundNumber>
-      <Message>Ooops! Sorry, looks like there is nothing here</Message>
+      <Message>Oops! Sorry, looks like there is nothing here</Message>
     </Wrapper>
   </Layout>
 );

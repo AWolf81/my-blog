@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
 import styled, { createGlobalStyle, css } from 'styled-components';
@@ -14,7 +13,6 @@ import { COLORS } from '../constants';
 class RootIndex extends React.Component {
   render() {
     const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
     const posts = data.allContentfulBlogPost.edges;
     const [author] = data.allContentfulPerson.edges;
     const postReadingTime = node =>
@@ -24,7 +22,6 @@ class RootIndex extends React.Component {
       <Fragment>
         <GlobalStyle />
         <Layout location={this.props.location}>
-          <Helmet title={siteTitle} />
           <Hero data={author.node} />
           <Wrapper>
             <SectionHeadline>Recent articles</SectionHeadline>

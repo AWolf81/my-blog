@@ -23,16 +23,16 @@ class BlogPostTemplate extends React.Component {
     return (
       <Fragment>
         <GlobalStyle />
-        <Layout location={this.props.location}>
-          <Helmet title={`${post.title} | ${siteTitle}`} />
-          <HeroWrapper>
-            {post.heroImage ? (
-              <HeroImage alt={post.title} sizes={post.heroImage.sizes} />
-            ) : (
-              <strong>Hero image missing!!</strong>
-            )}
-          </HeroWrapper>
+        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Layout location={this.props.location} slug={post.slug}>
           <MainWrapper>
+            <HeroWrapper>
+              {post.heroImage ? (
+                <HeroImage alt={post.title} sizes={post.heroImage.sizes} />
+              ) : (
+                <strong>Hero image missing!!</strong>
+              )}
+            </HeroWrapper>
             <SectionHeadline>{post.title}</SectionHeadline>
             <p
               style={{

@@ -27,21 +27,21 @@ if (!spaceId || !accessToken) {
 
 const config = {
   siteMetadata: {
-    twitterHandle: '@awolf81',
-    url: 'https://blog.alexanderwolf.tech/',
-    siteUrl: 'https://blog.alexanderwolf.tech/',
     title: 'Blog - Alexander Wolf',
+    description: 'Blogging about web development mainly frontend coding',
+    siteUrl: 'https://blog.alexanderwolf.tech/',
+    twitterHandle: '@awolf81',
   },
   plugins: [
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          `@johnlindquist/gatsby-remark-embed-codesandbox`,
-          `gatsby-remark-reading-time`,
-          `@weknow/gatsby-remark-twitter`,
+          '@johnlindquist/gatsby-remark-embed-codesandbox',
+          '@weknow/gatsby-remark-twitter',
+          'gatsby-remark-reading-time',
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: 'gatsby-remark-prismjs',
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;
               // defaults to 'language-' (eg <pre class="language-js">).
@@ -69,7 +69,7 @@ const config = {
               // This toggles the display of line numbers globally alongside the code.
               // To use it, add the following line in src/layouts/index.js
               // right after importing the prism color scheme:
-              //  `require("prismjs/plugins/line-numbers/prism-line-numbers.css");`
+              //  'require("prismjs/plugins/line-numbers/prism-line-numbers.css");'
               // Defaults to false.
               // If you wish to only show line numbers on certain code blocks,
               // leave false and use the {numberLines: true} syntax below
@@ -100,6 +100,67 @@ const config = {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allContentfulBlogPost } }) => {
+              return allContentfulBlogPost.edges.map(edge => {
+                return Object.assign({}, edge.node, {
+                  description:
+                    edge.node.childContentfulBlogPostDescriptionTextNode
+                      .childMarkdownRemark.excerpt,
+                  date: edge.node.updatedAt,
+                  url: site.siteMetadata.siteUrl + edge.node.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.slug,
+                  custom_elements: [
+                    { 'content:encoded': 'just a test' /*edge.node.html*/ },
+                  ],
+                });
+              });
+            },
+            query: `
+    {
+      allContentfulBlogPost(limit: 1000, sort: { order: DESC, fields: [updatedAt]}) {
+        edges {
+          node {
+            title
+            slug
+            updatedAt
+            childContentfulBlogPostDescriptionTextNode {
+              childMarkdownRemark {
+                excerpt
+              }
+            }
+            body {
+              childMarkdownRemark {
+                html
+              }
+            }
+          }
+        }
+      }
+    }
+            `,
+            output: '/rss.xml',
+            title: 'RSS Feed',
+          },
+        ],
       },
     },
   ],

@@ -72,6 +72,7 @@ const Share = ({ socialConfig, tags }) => (
 const Wrapper = styled.div`
   z-index: +1;
   margin-top: 2em;
+  margin-bottom: 2em;
   padding: 0.5em;
   background: ${COLORS.lightGray[100]};
   .SocialMediaShareButton {

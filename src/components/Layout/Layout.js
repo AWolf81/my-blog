@@ -7,12 +7,12 @@ import Navigation from '../Navigation';
 
 class Template extends React.Component {
   render() {
-    const { children, location, slug } = this.props;
+    const { children, location } = this.props;
 
     return (
       <StaticQuery
         query={graphql`
-          query {
+          query LayoutQuery {
             site {
               siteMetadata {
                 title
@@ -23,15 +23,18 @@ class Template extends React.Component {
         `}
         render={data => (
           <Fragment>
-            <Helmet>
-              <meta name="twitter:card" content="summary_large_image" />
-              <meta
-                name="twitter:image"
-                content={`${
-                  data.site.siteMetadata.siteUrl
-                }${slug}twitter-card.jpg`}
-              />
-            </Helmet>
+            {
+              // slug && (
+              // <Helmet>
+              //   <meta name="twitter:card" content="summary_large_image" />
+              //   <meta
+              //     name="twitter:image"
+              //     content={`${
+              //       data.site.siteMetadata.siteUrl
+              //     }${slug}twitter-card.jpg`}
+              //   />
+              // </Helmet>)
+            }
             <MainPane>
               {location.pathname !== '/' && <Navigation />}
               {children}

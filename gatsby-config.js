@@ -128,8 +128,12 @@ const config = {
                   date: edge.node.updatedAt,
                   url: site.siteMetadata.siteUrl + edge.node.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.slug,
+                  image_url: edge.node.heroImage.fixed.srcWebp,
                   custom_elements: [
-                    { 'content:encoded': 'just a test' /*edge.node.html*/ },
+                    {
+                      'content:encoded':
+                        edge.node.body.childMarkdownRemark.html,
+                    },
                   ],
                 });
               });
@@ -141,6 +145,11 @@ const config = {
           node {
             title
             slug
+            heroImage {
+              fixed(width: 400) {
+                srcWebp
+              }
+            }
             updatedAt
             childContentfulBlogPostDescriptionTextNode {
               childMarkdownRemark {

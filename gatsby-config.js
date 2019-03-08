@@ -127,7 +127,12 @@ const config = {
                       .childMarkdownRemark.excerpt,
                   date: edge.node.updatedAt,
                   url: site.siteMetadata.siteUrl + edge.node.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.slug,
+                  guid: [
+                    site.siteMetadata.siteUrl,
+                    edge.node.slug,
+                    edge.node.id,
+                    edge.node.updatedAt,
+                  ].join('-'),
                   image_url: edge.node.heroImage.fixed.srcWebp,
                   custom_elements: [
                     {
@@ -143,6 +148,7 @@ const config = {
       allContentfulBlogPost(limit: 1000, sort: { order: DESC, fields: [updatedAt]}) {
         edges {
           node {
+            id
             title
             slug
             heroImage {

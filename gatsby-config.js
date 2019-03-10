@@ -115,8 +115,40 @@ const config = {
                 site_url: siteUrl
               }
             }
+            avatar: file(name: {eq: "avatar"}) {
+              childImageSharp {
+                fixed(width: 400) {
+                  src
+                }
+              }
+            }
           }
         `,
+        // mostly copied from default in gatsby-plugin-feed source code
+        // but adding a custom namespace
+        setup: ({
+          query: {
+            site: { siteMetadata },
+            avatar,
+            ...rest
+          },
+        }) => {
+          return {
+            ...siteMetadata,
+            ...rest,
+            custom_namespaces: {
+              webfeeds: 'http://webfeeds.org/rss/1.0',
+            },
+            custom_elements: [
+              {
+                'webfeeds:icon':
+                  siteMetadata.siteUrl + avatar.childImageSharp.fixed.src,
+                'webfeeds:logo':
+                  siteMetadata.siteUrl + avatar.childImageSharp.fixed.src,
+              },
+            ],
+          };
+        },
         feeds: [
           {
             serialize: ({ query: { site, allContentfulBlogPost } }) => {
@@ -127,19 +159,15 @@ const config = {
                       .childMarkdownRemark.excerpt,
                   date: edge.node.updatedAt,
                   url: site.siteMetadata.siteUrl + edge.node.slug,
-                  guid: [
-                    site.siteMetadata.siteUrl,
-                    edge.node.slug,
-                    edge.node.id,
-                    edge.node.updatedAt,
-                  ].join('-'),
+                  guid: site.siteMetadata.siteUrl + edge.node.slug,
                   image_url: edge.node.heroImage.fixed.srcWebp,
-                  custom_elements: [
+                  custom_elements: [].concat(
                     {
                       'content:encoded':
                         edge.node.body.childMarkdownRemark.html,
                     },
-                  ],
+                    edge.node.tags.map(tag => ({ category: tag }))
+                  ),
                 });
               });
             },
@@ -151,6 +179,7 @@ const config = {
             id
             title
             slug
+            tags
             heroImage {
               fixed(width: 400) {
                 srcWebp
@@ -174,6 +203,14 @@ const config = {
             `,
             output: '/rss.xml',
             title: 'RSS Feed',
+            // custom_elements: [
+            //   {
+            //     'webfeeds:cover image': {
+            //       serialize: ({ query: { avatar } }) =>
+            //         avatar.childImageSharp.fixed.srcWebp,
+            //     },
+            //   },
+            // ],
           },
         ],
       },

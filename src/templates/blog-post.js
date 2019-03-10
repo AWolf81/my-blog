@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import { DiscussionEmbed } from 'disqus-react';
 
@@ -23,8 +22,12 @@ class BlogPostTemplate extends React.Component {
     return (
       <Fragment>
         <GlobalStyle />
-        <Helmet title={`${post.title} | ${siteTitle}`} />
-        <Layout location={this.props.location} slug={post.slug}>
+        <Layout
+          location={this.props.location}
+          slug={post.slug}
+          title={`${post.title} | ${siteTitle}`}
+          twitterCardImage={post.heroImage.fixed.srcWebp}
+        >
           <MainWrapper>
             <HeroWrapper>
               {post.heroImage ? (
@@ -84,6 +87,9 @@ export const pageQuery = graphql`
       slug
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {
+        fixed(width: 800) {
+          srcWebp
+        }
         sizes(maxWidth: 1180, background: "rgb:000000") {
           ...GatsbyContentfulSizes_withWebp
         }

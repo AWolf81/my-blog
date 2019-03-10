@@ -38,6 +38,7 @@ const config = {
       options: {
         plugins: [
           '@johnlindquist/gatsby-remark-embed-codesandbox',
+          // 'gatsby-remark-social-cards',
           '@weknow/gatsby-remark-twitter',
           'gatsby-remark-reading-time',
           {
@@ -205,14 +206,6 @@ const config = {
             `,
             output: '/rss.xml',
             title: 'RSS Feed',
-            // custom_elements: [
-            //   {
-            //     'webfeeds:cover image': {
-            //       serialize: ({ query: { avatar } }) =>
-            //         avatar.childImageSharp.fixed.srcWebp,
-            //     },
-            //   },
-            // ],
           },
         ],
       },

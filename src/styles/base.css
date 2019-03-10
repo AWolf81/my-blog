@@ -16,8 +16,8 @@ a {
   color: currentColor;
 }
 
-.language-shell :before,
-.language-bash :before {
+code.language-bash:before,
+code.language-shell:before {
   content: '$ ';
   font-weight: bold;
 }

@@ -115,6 +115,9 @@ const config = {
                 site_url: siteUrl
               }
             }
+            logo: file(name: {eq: "AW_Blog_Logo"}) {
+              publicURL
+            }
             avatar: file(name: {eq: "avatar"}) {
               childImageSharp {
                 fixed(width: 400) {
@@ -130,6 +133,7 @@ const config = {
           query: {
             site: { siteMetadata },
             avatar,
+            logo,
             ...rest
           },
         }) => {
@@ -141,11 +145,9 @@ const config = {
             },
             custom_elements: [
               {
-                'webfeeds:icon':
-                  siteMetadata.siteUrl + avatar.childImageSharp.fixed.src,
-                'webfeeds:logo':
-                  siteMetadata.siteUrl + avatar.childImageSharp.fixed.src,
+                'webfeeds:icon': siteMetadata.siteUrl + logo.publicURL,
               },
+              { 'webfeeds:logo': siteMetadata.siteUrl + logo.publicURL },
             ],
           };
         },

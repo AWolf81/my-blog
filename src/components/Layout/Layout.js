@@ -28,7 +28,7 @@ class Template extends React.Component {
               <Helmet title={data.site.siteMetadata.title} />
             ) : (
               <Helmet title={title}>
-                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:card" content="summary_large_image" />
                 <meta property="twitter:image" content={twitterCardImage} />
                 <meta name="twitter:creator" content="@awolf81" />
                 <meta

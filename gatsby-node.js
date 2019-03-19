@@ -10,7 +10,9 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
           {
-            allContentfulBlogPost {
+            allContentfulBlogPost(
+              sort: { order: DESC, fields: [publishDate] }
+            ) {
               edges {
                 node {
                   title
@@ -33,6 +35,8 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogPost,
             context: {
               slug: post.node.slug,
+              prev: index === 0 ? null : posts[index - 1],
+              next: index === posts.length - 1 ? null : posts[index + 1],
             },
           });
         });

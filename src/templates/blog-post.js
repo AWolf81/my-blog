@@ -4,13 +4,14 @@ import { DiscussionEmbed } from 'disqus-react';
 
 import Layout from '../components/Layout';
 import { HeroImage, Wrapper as HeroWrapper } from '../components/Hero/Hero';
+import { PrevNext } from '../components/Navigation';
 import { Wrapper as MainWrapper, SectionHeadline } from '../pages';
 import Share from '../components/Share';
 import { GlobalStyle } from '../pages';
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, pageContext } = this.props;
     const post = data.contentfulBlogPost;
     const { title: siteTitle, siteUrl, twitterHandle } = data.site.siteMetadata;
     const disqusShortname = 'blog-awolf';
@@ -18,7 +19,8 @@ class BlogPostTemplate extends React.Component {
       identifier: post.id,
       title: post.title,
     };
-
+    const { prev, next } = pageContext;
+    console.log('post prevNext', prev, next, pageContext);
     return (
       <Fragment>
         <GlobalStyle />
@@ -64,6 +66,7 @@ class BlogPostTemplate extends React.Component {
               shortname={disqusShortname}
               config={disqusConfig}
             />
+            <PrevNext prev={prev} next={next} />
           </MainWrapper>
         </Layout>
       </Fragment>

@@ -41,6 +41,21 @@ class Template extends React.Component {
                 />
                 <meta property="og:title" content={title} />
                 <meta property="og:image" content={twitterCardImage} />
+                <script type="text/javascript">
+                  {`
+                  var addthis_share = {
+                    url: "${data.site.siteMetadata.siteUrl}${slug}",
+                    title: "${title.split('|')[0].trim()}",
+                    passthrough : {
+                      twitter: {
+                        via: "awolf81",
+                        hashtags: "javascript,react"
+                      }
+                    },
+                    media: "${twitterCardImage}"
+                  }
+                `}
+                </script>
               </Helmet>
             )}
             <MainPane>

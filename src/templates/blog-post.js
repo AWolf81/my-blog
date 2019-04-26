@@ -5,14 +5,13 @@ import { DiscussionEmbed } from 'disqus-react';
 import Layout from '../components/Layout';
 import { HeroImage, Wrapper as HeroWrapper } from '../components/Hero/Hero';
 import { Wrapper as MainWrapper, SectionHeadline } from '../pages';
-import Share from '../components/Share';
 import { GlobalStyle } from '../pages';
 
 class BlogPostTemplate extends React.Component {
   render() {
     const { data } = this.props;
     const post = data.contentfulBlogPost;
-    const { title: siteTitle, siteUrl, twitterHandle } = data.site.siteMetadata;
+    const { title: siteTitle } = data.site.siteMetadata;
     const disqusShortname = 'blog-awolf';
     const disqusConfig = {
       identifier: post.id,
@@ -49,16 +48,6 @@ class BlogPostTemplate extends React.Component {
               dangerouslySetInnerHTML={{
                 __html: post.body.childMarkdownRemark.html,
               }}
-            />
-            <Share
-              socialConfig={{
-                twitterHandle,
-                config: {
-                  url: `${siteUrl}${post.slug}`,
-                  title: post.title,
-                },
-              }}
-              // tags={tags}
             />
             <DiscussionEmbed
               shortname={disqusShortname}

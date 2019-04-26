@@ -25,7 +25,7 @@ class BlogPostTemplate extends React.Component {
           location={this.props.location}
           slug={post.slug}
           title={`${post.title} | ${siteTitle}`}
-          twitterCardImage={post.heroImage.fixed.srcWebp}
+          twitterCardImage={`https:${post.heroImage.fixed.srcWebp}`}
         >
           <MainWrapper>
             <HeroWrapper>

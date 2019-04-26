@@ -28,8 +28,12 @@ class Template extends React.Component {
               <Helmet title={data.site.siteMetadata.title} />
             ) : (
               <Helmet title={title}>
+                <meta
+                  property="twitter:widgets:new-embed-design"
+                  content="on"
+                />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta property="twitter:image" content={twitterCardImage} />
+                <meta property="twitter:image:src" content={twitterCardImage} />
                 <meta name="twitter:creator" content="@awolf81" />
                 <meta
                   property="og:url"
@@ -37,6 +41,21 @@ class Template extends React.Component {
                 />
                 <meta property="og:title" content={title} />
                 <meta property="og:image" content={twitterCardImage} />
+                <script type="text/javascript">
+                  {`
+                  var addthis_share = {
+                    url: "${data.site.siteMetadata.siteUrl}${slug}",
+                    title: "${title.split('|')[0].trim()}",
+                    passthrough : {
+                      twitter: {
+                        via: "awolf81",
+                        // hashtags: "javascript,react"
+                      }
+                    },
+                    media: "${twitterCardImage}"
+                  }
+                `}
+                </script>
               </Helmet>
             )}
             <MainPane>

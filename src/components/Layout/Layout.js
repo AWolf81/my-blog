@@ -49,7 +49,7 @@ class Template extends React.Component {
                     passthrough : {
                       twitter: {
                         via: "awolf81",
-                        hashtags: "javascript,react"
+                        // hashtags: "javascript,react"
                       }
                     },
                     media: "${twitterCardImage}"

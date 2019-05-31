@@ -3,7 +3,8 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 
 import MainPane from '../MainPane';
-import Navigation from '../Navigation';
+import Logo from '../Logo';
+// import Navigation from '../Navigation';
 
 class Template extends React.Component {
   render() {
@@ -59,7 +60,12 @@ class Template extends React.Component {
               </Helmet>
             )}
             <MainPane>
-              {location.pathname !== '/' && <Navigation />}
+              {/* {location.pathname !== '/' && <Navigation />} */}
+              <Logo>
+                <span>
+                  Blog <sub>AWolf</sub>
+                </span>
+              </Logo>
               {children}
             </MainPane>
           </Fragment>

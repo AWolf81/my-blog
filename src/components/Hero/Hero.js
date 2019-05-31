@@ -1,6 +1,6 @@
-import React from 'react';
-import Img from 'gatsby-image';
-import styled from 'styled-components';
+import React from 'react'
+import Img from 'gatsby-image'
+import styled from 'styled-components'
 
 export default ({ data }) => (
   <Wrapper>
@@ -13,19 +13,19 @@ export default ({ data }) => (
       </Title>
       <div
         dangerouslySetInnerHTML={{
-          __html: data.shortBio.childMarkdownRemark.html,
+          __html: data.shortBio.childMarkdownRemark.html
         }}
       />
     </HeroDetails>
   </Wrapper>
-);
+)
 
 export const Wrapper = styled.div`
   position: relative;
   background: #000;
   color: #fff;
   text-align: center;
-`;
+`
 
 export const HeroImage = styled(Img)`
   /*
@@ -33,8 +33,9 @@ export const HeroImage = styled(Img)`
     the viewport width
   */
   height: 61.8vh;
-  max-height: 400px;
-`;
+  max-height: ${props => props.maxHeight || 400}px;
+  margin-bottom: 15px;
+`
 
 const HeroDetails = styled.div`
   position: absolute;
@@ -52,14 +53,14 @@ const HeroDetails = styled.div`
   @media (min-width: 1000px) {
     font-size: 20px;
   }
-`;
+`
 
 const HeroHeadline = styled.h3`
   margin: 0;
-`;
+`
 
 const Title = styled.p`
   margin: 0;
   font-size: 1.125em;
   font-weight: bold;
-`;
+`

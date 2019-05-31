@@ -1,6 +1,6 @@
 {
   "extends": "react-app",
-  "plugins": ["prettier"],
+  "plugins": ["eslint-config-prettier", "prettier"],
   "rules": {
     "prettier/prettier": "error"
   }

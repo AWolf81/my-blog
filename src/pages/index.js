@@ -1,22 +1,22 @@
-import React, { Fragment } from 'react';
-import { graphql } from 'gatsby';
+import React, { Fragment } from 'react'
+import { graphql } from 'gatsby'
 
-import styled, { createGlobalStyle, css } from 'styled-components';
-import baseStyles from '../styles/base.css';
+import styled, { createGlobalStyle, css } from 'styled-components'
+import baseStyles from '../styles/base.css'
 
-import Hero from '../components/Hero';
-import ArticlePreview from '../components/ArticlePreview';
-import Layout from '../components/Layout';
+import Hero from '../components/Hero'
+import ArticlePreview from '../components/ArticlePreview'
+import Layout from '../components/Layout'
 
-import { COLORS } from '../constants';
+import { COLORS } from '../constants'
 
 class RootIndex extends React.Component {
   render() {
-    const { data } = this.props;
-    const posts = data.allContentfulBlogPost.edges;
-    const [author] = data.allContentfulPerson.edges;
+    const { data } = this.props
+    const posts = data.allContentfulBlogPost.edges
+    const [author] = data.allContentfulPerson.edges
     const postReadingTime = node =>
-      `${node.body.childMarkdownRemark.fields.readingTime.text}`;
+      `${node.body.childMarkdownRemark.fields.readingTime.text}`
 
     return (
       <Fragment>
@@ -34,13 +34,13 @@ class RootIndex extends React.Component {
                       readingTime={postReadingTime(node)}
                     />
                   </li>
-                );
+                )
               })}
             </ArticleList>
           </Wrapper>
         </Layout>
       </Fragment>
-    );
+    )
   }
 }
 
@@ -65,19 +65,19 @@ body {
   background: ${COLORS.lightGray[100]};
   margin: 0;
 }
-`;
+`
 
 export const Wrapper = styled.div`
   width: calc(100% - 10vmin);
   margin: 0 auto;
   padding: 5vmin 0;
-`;
+`
 
 export const SectionHeadline = styled.h2`
   padding: 0 0 0.4em 0;
   margin: 0 0 5vmin 0;
   border-bottom: 1px solid #ddd;
-`;
+`
 
 const ArticleList = styled.ul`
   margin: 0;
@@ -86,9 +86,9 @@ const ArticleList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 5vmin;
-`;
+`
 
-export default RootIndex;
+export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery {
@@ -105,7 +105,12 @@ export const pageQuery = graphql`
           publishDate(formatString: "MMMM Do, YYYY")
           tags
           heroImage {
-            sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+            sizes(
+              maxWidth: 350
+              maxHeight: 196
+              quality: 80
+              resizingBehavior: SCALE
+            ) {
               ...GatsbyContentfulSizes_withWebp
             }
           }
@@ -143,6 +148,7 @@ export const pageQuery = graphql`
             sizes(
               maxWidth: 1180
               maxHeight: 480
+              quality: 100
               resizingBehavior: PAD
               background: "rgb:000000"
             ) {
@@ -153,4 +159,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

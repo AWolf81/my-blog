@@ -16,8 +16,17 @@ a {
   color: currentColor;
 }
 
+p {
+  text-align: justify;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  white-space: pre-wrap;
+}
+
 code.language-bash:before,
 code.language-shell:before {
-  content: '$ ';
+  content: '$\00a0'; /*$ with non-breaking space*/
   font-weight: bold;
 }

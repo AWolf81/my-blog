@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Layout from '../components/Layout'
 import { HeroImage, Wrapper as HeroWrapper } from '../components/Hero/Hero'
 import { PrevNext } from '../components/Navigation'
+import Footer from '../components/Footer'
 import { Wrapper as MainWrapper, SectionHeadline } from '../pages'
 import { GlobalStyle } from '../pages'
 
@@ -19,8 +20,7 @@ class BlogPostTemplate extends React.Component {
       identifier: post.id,
       title: post.title
     }
-    const { prev, next } = pageContext
-    console.log('post prevNext', prev, next, pageContext)
+    const { prev, next, buildDate } = pageContext
     return (
       <Fragment>
         <GlobalStyle />
@@ -66,6 +66,7 @@ class BlogPostTemplate extends React.Component {
             />
             <PrevNext prev={prev} next={next} />
           </MainWrapper>
+          <Footer date={buildDate} />
         </Layout>
       </Fragment>
     )

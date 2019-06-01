@@ -1,16 +1,16 @@
-import React, { Fragment } from 'react';
-import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
+import React, { Fragment } from 'react'
+import Helmet from 'react-helmet'
+import { StaticQuery, graphql } from 'gatsby'
+import CookieConsent from 'react-cookie-consent'
 
-import MainPane from '../MainPane';
-import Logo from '../Logo';
-// import Navigation from '../Navigation';
+import MainPane from '../MainPane'
+import Logo from '../Logo'
+// import Navigation from '../Navigation' // old back button --> not needed anymore
 
 class Template extends React.Component {
   render() {
-    const { children, location, title, slug, twitterCardImage } = this.props;
+    const { children, location, title, slug, twitterCardImage } = this.props
 
-    console.log('slug', slug);
     return (
       <StaticQuery
         query={graphql`
@@ -61,18 +61,23 @@ class Template extends React.Component {
             )}
             <MainPane>
               {/* {location.pathname !== '/' && <Navigation />} */}
-              <Logo>
-                <span>
-                  Blog <sub>AWolf</sub>
-                </span>
-              </Logo>
+              <Logo />
               {children}
+              <CookieConsent
+                enableDeclineButton
+                onDecline={() => {
+                  window.gaOptout()
+                }}
+              >
+                This website uses cookies to enhance the user experience. If you
+                decline, cookies will be disabled.
+              </CookieConsent>
             </MainPane>
           </Fragment>
         )}
       />
-    );
+    )
   }
 }
 
-export default Template;
+export default Template

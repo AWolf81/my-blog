@@ -68,6 +68,9 @@ class Template extends React.Component {
                 onDecline={() => {
                   window.gaOptout()
                 }}
+                style={{
+                  zIndex: 1000300 /* Above AddThis Z-index = 1000200 */
+                }}
               >
                 This website uses cookies to enhance the user experience. If you
                 decline, cookies will be disabled.

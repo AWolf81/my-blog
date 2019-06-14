@@ -24,7 +24,7 @@
     "gatsby-plugin-styled-components": "3.0.6",
     "gatsby-remark-prismjs": "3.2.4",
     "gatsby-remark-reading-time": "1.0.1",
-    "gatsby-source-contentful": "^2.0.67",
+    "gatsby-source-contentful": "^2.0.71",
     "gatsby-source-filesystem": "2.0.23",
     "gatsby-transformer-remark": "2.3.0",
     "gatsby-transformer-sharp": "2.1.15",

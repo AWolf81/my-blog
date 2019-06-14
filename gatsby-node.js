@@ -14,6 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
           {
             allContentfulBlogPost(
               sort: { order: DESC, fields: [publishDate] }
+              filter: { node_locale: { eq: "en-US" } }
             ) {
               edges {
                 node {

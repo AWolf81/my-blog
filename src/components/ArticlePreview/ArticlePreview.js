@@ -14,11 +14,13 @@ export default ({ article, readingTime }) => (
     <small>
       {article.publishDate} - {readingTime}
     </small>
-    {/* <p
-      dangerouslySetInnerHTML={{
-        __html: article.description.childMarkdownRemark.html
-      }}
-    /> */}
+    {
+      <p
+        dangerouslySetInnerHTML={{
+          __html: article.description.childMarkdownRemark.html
+        }}
+      />
+    }
   </div>
 )
 

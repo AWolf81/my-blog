@@ -1,11 +1,40 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import CookieConsent from 'react-cookie-consent'
 
 import MainPane from '../MainPane'
 import Logo from '../Logo'
 // import Navigation from '../Navigation' // old back button --> not needed anymore
+
+window.addEventListener(
+  'CookiebotOnAccept',
+  function(e) {
+    const gaProperty = process.env.GOOGLE_TRACKING_ID
+
+    console.log('on accept', gaProperty)
+    // Disable tracking if consent statistics is false.
+    const disableStr = 'ga-disable-' + gaProperty
+
+    if (!Cookiebot.consent.statistics) {
+      // opt-out
+      // Set to the same value as the web property used on the site
+
+      // no need to store disableStr in a cookie as Cookiebot.consent is already stored
+      // document.cookie =
+      //   disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'
+      window[disableStr] = true
+    } else {
+      // google analyitics is added by gatsby plugin
+      window[disableStr] = false
+    }
+
+    if (Cookiebot.consent.marketing) {
+      //Execute code that sets marketing cookies
+    }
+  },
+
+  false
+)
 
 class Template extends React.Component {
   render() {
@@ -42,6 +71,13 @@ class Template extends React.Component {
                 />
                 <meta property="og:title" content={title} />
                 <meta property="og:image" content={twitterCardImage} />
+                <script
+                  id="Cookiebot"
+                  src="https://consent.cookiebot.com/uc.js"
+                  data-cbid="e20953e6-301a-40a9-8fd2-b5e53901021b"
+                  type="text/javascript"
+                  async
+                />
                 <script type="text/javascript">
                   {`
                   var addthis_share = {
@@ -63,18 +99,6 @@ class Template extends React.Component {
               {/* {location.pathname !== '/' && <Navigation />} */}
               <Logo />
               {children}
-              <CookieConsent
-                enableDeclineButton
-                onDecline={() => {
-                  window.gaOptout()
-                }}
-                style={{
-                  zIndex: 1000300 /* Above AddThis Z-index = 1000200 */
-                }}
-              >
-                This website uses cookies to enhance the user experience. If you
-                decline, cookies will be disabled.
-              </CookieConsent>
             </MainPane>
           </Fragment>
         )}

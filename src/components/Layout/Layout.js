@@ -6,37 +6,38 @@ import MainPane from '../MainPane'
 import Logo from '../Logo'
 // import Navigation from '../Navigation' // old back button --> not needed anymore
 
-window.addEventListener(
-  'CookiebotOnAccept',
-  function(e) {
-    const gaProperty = process.env.GOOGLE_TRACKING_ID
-
-    console.log('on accept', gaProperty)
-    // Disable tracking if consent statistics is false.
-    const disableStr = 'ga-disable-' + gaProperty
-
-    if (!Cookiebot.consent.statistics) {
-      // opt-out
-      // Set to the same value as the web property used on the site
-
-      // no need to store disableStr in a cookie as Cookiebot.consent is already stored
-      // document.cookie =
-      //   disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'
-      window[disableStr] = true
-    } else {
-      // google analyitics is added by gatsby plugin
-      window[disableStr] = false
-    }
-
-    if (Cookiebot.consent.marketing) {
-      //Execute code that sets marketing cookies
-    }
-  },
-
-  false
-)
-
 class Template extends React.Component {
+  componentDidMount() {
+    window.addEventListener(
+      'CookiebotOnAccept',
+      function(e) {
+        const gaProperty = process.env.GOOGLE_TRACKING_ID
+
+        console.log('on accept', gaProperty)
+        // Disable tracking if consent statistics is false.
+        const disableStr = 'ga-disable-' + gaProperty
+
+        if (!Cookiebot.consent.statistics) {
+          // opt-out
+          // Set to the same value as the web property used on the site
+
+          // no need to store disableStr in a cookie as Cookiebot.consent is already stored
+          // document.cookie =
+          //   disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/'
+          window[disableStr] = true
+        } else {
+          // google analyitics is added by gatsby plugin
+          window[disableStr] = false
+        }
+
+        if (Cookiebot.consent.marketing) {
+          //Execute code that sets marketing cookies
+        }
+      },
+
+      false
+    )
+  }
   render() {
     const { children, location, title, slug, twitterCardImage } = this.props
 

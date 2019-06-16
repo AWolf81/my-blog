@@ -28,6 +28,7 @@ class RootIndex extends React.Component {
               </TabList>
               {allContentfulSiteContent.edges.map(privacy => (
                 <TabPanel
+                  key={privacy.node.id}
                   dangerouslySetInnerHTML={{
                     __html: privacy.node.body.childMarkdownRemark.html
                   }}
@@ -54,6 +55,7 @@ export const query = graphql`
     allContentfulSiteContent(filter: { slug: { eq: "privacy-policy" } }) {
       edges {
         node {
+          id
           node_locale
           body {
             childMarkdownRemark {

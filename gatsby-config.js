@@ -1,11 +1,12 @@
-let contentfulConfig;
-require('dotenv').config();
+const queries = require('./src/utils/algolia')
+let contentfulConfig
+require('dotenv').config()
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production'
 
 try {
   // Load the Contentful config from the .contentful.json
-  contentfulConfig = require('./.contentful');
+  contentfulConfig = require('./.contentful')
 } catch (_) {}
 
 // Overwrite the Contentful config with environment variables if they exist
@@ -14,15 +15,15 @@ contentfulConfig = {
   host: isProduction ? 'cdn.contentful.com' : 'preview.contentful.com',
   accessToken: isProduction
     ? process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken
-    : process.env.CONTENTFUL_PREVIEW_TOKEN || contentfulConfig.previewToken,
-};
+    : process.env.CONTENTFUL_PREVIEW_TOKEN || contentfulConfig.previewToken
+}
 
-const { spaceId, accessToken } = contentfulConfig;
+const { spaceId, accessToken } = contentfulConfig
 
 if (!spaceId || !accessToken) {
   throw new Error(
     'Contentful spaceId and the delivery token need to be provided.'
-  );
+  )
 }
 
 const config = {
@@ -30,7 +31,7 @@ const config = {
     title: 'Blog - Alexander Wolf',
     description: 'Blogging about web development mainly frontend coding',
     siteUrl: 'https://blog.alexanderwolf.tech/',
-    twitterHandle: '@awolf81',
+    twitterHandle: '@awolf81'
   },
   plugins: [
     {
@@ -65,7 +66,7 @@ const config = {
               // bash highlighter.
               aliases: {
                 sh: 'bash',
-                js: 'javascript',
+                js: 'javascript'
               },
               // This toggles the display of line numbers globally alongside the code.
               // To use it, add the following line in src/layouts/index.js
@@ -77,23 +78,23 @@ const config = {
               showLineNumbers: false,
               // If setting this to true, the parser won't handle and highlight inline
               // code used in markdown i.e. single backtick code like `this`.
-              noInlineHighlight: false,
-            },
-          },
-        ],
-      },
+              noInlineHighlight: false
+            }
+          }
+        ]
+      }
     },
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/src/images`
+      }
     },
     {
       resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
+      options: contentfulConfig
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -101,7 +102,7 @@ const config = {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
-      },
+      }
     },
     {
       resolve: `gatsby-plugin-feed`,
@@ -136,21 +137,21 @@ const config = {
             avatar,
             logo,
             ...rest
-          },
+          }
         }) => {
           return {
             ...siteMetadata,
             ...rest,
             custom_namespaces: {
-              webfeeds: 'http://webfeeds.org/rss/1.0',
+              webfeeds: 'http://webfeeds.org/rss/1.0'
             },
             custom_elements: [
               {
-                'webfeeds:icon': siteMetadata.siteUrl + logo.publicURL,
+                'webfeeds:icon': siteMetadata.siteUrl + logo.publicURL
               },
-              { 'webfeeds:logo': siteMetadata.siteUrl + logo.publicURL },
-            ],
-          };
+              { 'webfeeds:logo': siteMetadata.siteUrl + logo.publicURL }
+            ]
+          }
         },
         feeds: [
           {
@@ -166,13 +167,12 @@ const config = {
                   image_url: edge.node.heroImage.fixed.srcWebp,
                   custom_elements: [].concat(
                     {
-                      'content:encoded':
-                        edge.node.body.childMarkdownRemark.html,
+                      'content:encoded': edge.node.body.childMarkdownRemark.html
                     },
                     edge.node.tags.map(tag => ({ category: tag }))
-                  ),
-                });
-              });
+                  )
+                })
+              })
             },
             query: `
     {
@@ -205,13 +205,22 @@ const config = {
     }
             `,
             output: '/rss.xml',
-            title: 'RSS Feed',
-          },
-        ],
-      },
+            title: 'RSS Feed'
+          }
+        ]
+      }
     },
-  ],
-};
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 10000 // default: 1000
+      }
+    }
+  ]
+}
 
 // optional plugins or production only plugins
 
@@ -219,7 +228,7 @@ if (isProduction) {
   // Tracking only in production
   // we're tracking with-out ip logging
   // Todo: Add an opt-out button
-  const trackingId = process.env.GOOGLE_TRACKING_ID;
+  const trackingId = process.env.GOOGLE_TRACKING_ID
 
   if (trackingId) {
     config.plugins.push({
@@ -230,10 +239,10 @@ if (isProduction) {
         anonymize: true,
         // Setting this parameter is also optional
         respectDNT: true,
-        cookieDomain: process.env.GOOGLE_COOKIE_DOMAIN,
-      },
-    });
+        cookieDomain: process.env.GOOGLE_COOKIE_DOMAIN
+      }
+    })
   }
 }
 
-module.exports = config;
+module.exports = config

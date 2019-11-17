@@ -16,7 +16,7 @@ class RootIndex extends React.Component {
     const posts = data.allContentfulBlogPost.edges
     const [author] = data.allContentfulPerson.edges
     const postReadingTime = node =>
-      `${node.body.childMarkdownRemark.fields.readingTime.text}`
+      node.body && `${node.body.childMarkdownRemark.fields.readingTime.text}`
 
     return (
       <Fragment>
@@ -80,12 +80,16 @@ export const SectionHeadline = styled.h2`
 `
 
 const ArticleList = styled.ul`
-  margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 5vmin;
+
+  & li {
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.2);
+    padding: 0.4em;
+  }
 `
 
 export default RootIndex

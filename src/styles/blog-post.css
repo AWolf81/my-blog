@@ -1,0 +1,30 @@
+img {
+  display: block;
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-size: 2em;
+  font-weight: normal;
+}
+
+a {
+  color: currentColor;
+}
+
+p {
+  text-align: justify;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  white-space: pre-wrap;
+}
+
+code.language-bash:before,
+code.language-shell:before {
+  content: '$\00a0'; /*$ with non-breaking space*/
+  font-weight: bold;
+}

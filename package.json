@@ -9,13 +9,16 @@
   },
   "dependencies": {
     "@johnlindquist/gatsby-remark-embed-codesandbox": "0.0.3",
+    "@mdx-js/react": "^1.4.5",
     "@weknow/gatsby-remark-twitter": "0.2.0",
+    "algoliasearch": "^3.34.0",
     "babel-plugin-styled-components": "1.10.0",
     "disqus-react": "1.0.5",
-    "dotenv": "6.2.0",
-    "gatsby": "2.1.18",
+    "dotenv": "^8.1.0",
+    "gatsby": "^2.13.31",
     "gatsby-image": "2.0.30",
     "gatsby-link": "2.0.12",
+    "gatsby-plugin-algolia": "^0.3.3",
     "gatsby-plugin-favicon": "3.1.5",
     "gatsby-plugin-feed": "2.0.14",
     "gatsby-plugin-google-analytics": "2.0.15",
@@ -32,12 +35,14 @@
     "prismjs": "1.15.0",
     "prop-types": "15.7.2",
     "react": "16.8.3",
-    "react-cookie-consent": "2.3.1",
     "react-dom": "16.8.3",
     "react-helmet": "5.2.0",
     "react-icons-kit": "1.2.1",
+    "react-instantsearch-dom": "^5.7.0",
     "react-share": "2.4.0",
-    "styled-components": "4.1.3"
+    "react-tabs": "^3.0.0",
+    "styled-components": "4.1.3",
+    "styled-icons": "^8.4.2"
   },
   "homepage": "https://blog.alexanderwolf.tech",
   "keywords": [
@@ -54,6 +59,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=DEVELOPMENT gatsby develop",
     "build": "cross-env NODE_ENV=PRODUCTION gatsby build",
+    "prebuild": "yarn clean",
     "clean": "gatsby clean",
     "heroku-postbuild": "gatsby build",
     "serve": "gatsby serve",

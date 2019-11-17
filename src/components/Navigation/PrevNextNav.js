@@ -64,22 +64,7 @@ const NavItem = styled(({ visible, ...props }) => <Link {...props} />)`
 
   & :hover {
     color: hsl(210, 100%, 60%);
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.7))
-      drop-shadow(1px 1px 1px rgba(0, 0, 0, 1));
-    transform: translate(1px);
-    :before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 1px;
-      border: 2px solid rgba(0, 0, 0, 0.3);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      clip-path: polygon(90% -20%, -35% 50%, 90% 125%);
-      transform: rotate(0deg);
-      animation: ${rotate} 2s linear infinite;
-    }
+    filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
   }
 `
 

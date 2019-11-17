@@ -1,8 +1,8 @@
-import React, { Fragment } from './node_modules/react'
-import { Highlight, Snippet } from './node_modules/react-instantsearch-dom'
-import { Link } from './node_modules/gatsby'
-import { Calendar } from './node_modules/styled-icons/octicons/Calendar'
-import { Tags } from './node_modules/styled-icons/fa-solid/Tags'
+import React, { Fragment } from 'react'
+import { Highlight, Snippet } from 'react-instantsearch-dom'
+import { Link } from 'gatsby'
+import { Calendar } from 'styled-icons/octicons/Calendar'
+import { Tags } from 'styled-icons/fa-solid/Tags'
 
 export const PageHit = clickHandler => ({ hit }) =>
   hit && (

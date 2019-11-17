@@ -1,11 +1,11 @@
-import React, { useState, useEffect, createRef } from './node_modules/react'
+import React, { useState, useEffect, createRef } from 'react'
 import {
   InstantSearch,
   Index,
   Hits,
   connectStateResults
-} from './node_modules/react-instantsearch-dom'
-import algoliasearch from './node_modules/algoliasearch/lite'
+} from 'react-instantsearch-dom'
+import algoliasearch from 'algoliasearch/lite'
 
 import { Root, HitsWrapper, PoweredBy } from './styles'
 import Input from './input'
@@ -26,11 +26,13 @@ const useClickOutside = (ref, handler, events) => {
   const detectClickOutside = event =>
     !ref.current.contains(event.target) && handler()
   useEffect(() => {
-    for (const event of events)
+    for (const event of events) {
       document.addEventListener(event, detectClickOutside)
+    }
     return () => {
-      for (const event of events)
+      for (const event of events) {
         document.removeEventListener(event, detectClickOutside)
+      }
     }
   })
 }

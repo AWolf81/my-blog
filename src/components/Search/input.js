@@ -1,5 +1,5 @@
-import React from './node_modules/react'
-import { connectSearchBox } from './node_modules/react-instantsearch-dom'
+import React from 'react'
+import { connectSearchBox } from 'react-instantsearch-dom'
 
 import { SearchIcon, Form, Input } from './styles'
 

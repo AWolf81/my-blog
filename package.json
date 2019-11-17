@@ -2,7 +2,7 @@
   "name": "my-blog",
   "description": "Tech Blog from Alexander Wolf",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "AWolf81 <awolf2904@gmail.com>",
   "bugs": {
     "url": "https://github.com/AWolf81/my-blog/issues"

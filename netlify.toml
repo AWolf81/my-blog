@@ -5,6 +5,7 @@
 
 [Build.environment]
   NODE_ENV = "PRODUCTION"
+  environment = { NODE_VERSION = "10" }
 
 [context.devel.environment]
   NODE_ENV = "DEVELOPMENT"

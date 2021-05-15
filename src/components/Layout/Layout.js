@@ -18,7 +18,7 @@ import useHasMounted from '../../utils/useHasMounted.js'
 
 const ToggleButton = styled(ReactToggleButton)`
   padding-top: 10px;
-  border: 1px solid white !important;
+  border: 1px solid white;
 `
 
 export const GlobalStyles = createGlobalStyle`

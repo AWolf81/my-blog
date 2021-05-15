@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import { GlobalStyle } from './index';
 
-export default ({ location }) => (
+const PageNotFound = ({ location }) => (
   <Layout location={location}>
     <GlobalStyle />
     <Wrapper>
@@ -13,6 +13,7 @@ export default ({ location }) => (
     </Wrapper>
   </Layout>
 );
+export default PageNotFound;
 
 const Wrapper = styled.div`
   display: flex;

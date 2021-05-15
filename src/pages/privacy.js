@@ -2,14 +2,14 @@ import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
 import styled, { createGlobalStyle, css } from 'styled-components'
-import baseStyles from '../styles/base.css'
+// import baseStyles from '../styles/base.css'
 
 import Layout from '../components/Layout'
 import { GlobalStyle, Wrapper } from './index'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
 
-import { COLORS } from '../constants'
+// import { COLORS } from '../constants'
 
 class RootIndex extends React.Component {
   render() {

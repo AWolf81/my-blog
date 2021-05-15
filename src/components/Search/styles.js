@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Search } from 'styled-icons/fa-solid/Search'
-import { Algolia } from 'styled-icons/fa-brands/Algolia'
+import { Search } from '@styled-icons/fa-solid/Search'
+import { Algolia } from '@styled-icons/fa-brands/Algolia'
 
 export const Root = styled.div`
   position: relative;
@@ -19,8 +19,8 @@ const focus = css`
   color: ${props => props.theme.darkBlue};
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   cursor: text;
-  width: 8em;
-  padding: 0.2em;
+  width: 15em;
+  padding: 0.4em;
   + ${SearchIcon} {
     color: ${props => props.theme.darkBlue};
     margin: 0.3em;
@@ -57,8 +57,8 @@ export const Input = styled.input`
   border: none;
   font-size: 1em;
   background: transparent;
-  transition: ${props => props.theme.shortTrans};
-  border-radius: ${props => props.theme.smallBorderRadius};
+  transition: ${props => props.theme.timing.shortTrans};
+  border-radius: ${props => props.theme.styles.smallBorderRadius};
   ${props => (props.collapse ? collapse : expand)};
 `
 
@@ -76,23 +76,24 @@ export const HitsWrapper = styled.div`
   overflow-x: hidden;
   z-index: 2;
   -webkit-overflow-scrolling: touch;
-  position: absolute;
-  right: 0;
-  top: calc(100% + 0.5em);
+  position: fixed;
+  right: 1vw;
+  top: 60px;
   width: 80vw;
-  max-width: 30em;
+  max-width: 40em;
   box-shadow: 0 0 5px 0;
   padding: 0.7em 1em 0.4em;
-  background: white;
-  border-radius: ${props => props.theme.smallBorderRadius};
+  background: ${props => props.theme.colors.searchResults_bg};
+  border-radius: ${props => props.theme.styles.smallBorderRadius};
   > * + * {
     padding-top: 1em !important;
-    border-top: 2px solid ${props => props.theme.darkGray};
+    border-top: 2px solid ${props => props.theme.colors.darkGray};
   }
   li + li {
     margin-top: 0.7em;
     padding-top: 0.7em;
-    border-top: 1px solid ${props => props.theme.lightGray};
+    padding-bottom: 0.7em;
+    border-top: 1px solid ${props => props.theme.colors.lightGray};
   }
   * {
     margin-top: 0;
@@ -102,8 +103,9 @@ export const HitsWrapper = styled.div`
     list-style: none;
   }
   mark {
-    color: ${props => props.theme.lightBlue};
-    background: ${props => props.theme.darkBlue};
+    color: ${props => props.theme.colors.highlight};
+    background: ${props => props.theme.colors.highlight_bg}; 
+    padding: 0.4em 0;
   }
   header {
     display: flex;
@@ -111,9 +113,9 @@ export const HitsWrapper = styled.div`
     margin-bottom: 0.3em;
     h3 {
       color: white;
-      background: ${props => props.theme.gray};
+      background: ${props => props.theme.colors.gray};
       padding: 0.1em 0.4em;
-      border-radius: ${props => props.theme.smallBorderRadius};
+      border-radius: ${props => props.theme.styles.smallBorderRadius};
     }
   }
   h3 {

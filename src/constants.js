@@ -1,5 +1,5 @@
 export const COLORS = {
-  /* Coolors Exported Palette - coolors.co/fcfafa-c8d3d5-a4b8c4-6e8387-0cca4a */
+  /* Coolors Exported Palette - https://coolors.co/fcfafa-c8d3d5-a4b8c4-374143-0cca4a */
   snow: {
     100: 'rgba(252, 250, 250, 1)',
   },
@@ -10,10 +10,16 @@ export const COLORS = {
     100: 'rgba(164, 184, 196, 1)',
   },
   darkGray: {
-    100: 'rgba(110, 131, 135, 1)',
+    100: 'hsl(190,10%,10%)',
+    90: 'hsl(190,10%,20%)',
+    80: 'hsl(190,10%,30%)',
+    70: 'hsl(190,10%,40%)',
+    60: 'hsl(190,10%,50%)',
   },
   mintGreen: {
-    100: 'rgba(12, 202, 74, 1)',
+    100: 'hsl(183,58%,10%)',
+    80: 'hsl(183,58%,20%)',
+    60: 'hsl(183,58%,40%)'
   },
   black: {
     100: '#171717',

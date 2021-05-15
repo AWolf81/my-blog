@@ -6,7 +6,7 @@ import styled from 'styled-components'
 export default ({ article, readingTime }) => (
   <div>
     <Link to={`/${article.slug}`}>
-      {article.heroImage && <Img alt="" sizes={article.heroImage.sizes} />}
+      {article.heroImage && <Img alt="" fluid={article.heroImage.fluid} />}
     </Link>
     <PreviewTitle>
       <Link to={`/${article.slug}`}>{article.title}</Link>
@@ -15,7 +15,7 @@ export default ({ article, readingTime }) => (
       {article.publishDate} - {readingTime}
     </small>
     {article.description && (
-      <p
+      <Description
         dangerouslySetInnerHTML={{
           __html: article.description.childMarkdownRemark.html
         }}
@@ -27,6 +27,8 @@ export default ({ article, readingTime }) => (
 const PreviewTitle = styled.h3`
   font-size: 1.5em;
 `
+
+const Description = styled.div``
 
 /*
  // wasn't used in starter

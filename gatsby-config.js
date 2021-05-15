@@ -38,7 +38,7 @@ const config = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          'gatsby-plugin-favicon',
+          // 'gatsby-plugin-favicon',
           '@johnlindquist/gatsby-remark-embed-codesandbox',
           '@weknow/gatsby-remark-twitter',
           'gatsby-remark-reading-time',

@@ -1,5 +1,5 @@
 [Build]
-  Publish = "public/"
+  Publish = "public"
   command = "npm run build"
   Functions = ""
 

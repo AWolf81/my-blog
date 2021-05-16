@@ -15,7 +15,7 @@ export default function HTML(props) {
         <link rel="preconnect" href="//s7.addthis.com" crossOrigin/>
         <link
           rel="preload"
-          href="/static/avenir-400.woff2"
+          href="/avenir-400.woff2"
           as="font"
           crossOrigin="anonymous"
           type="font/woff2"

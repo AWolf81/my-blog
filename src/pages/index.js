@@ -109,8 +109,8 @@ export const pageQuery = graphql`
           tags
           heroImage {
             fluid(
-              maxWidth: 350
-              maxHeight: 196
+              maxWidth: 207
+              maxHeight: 116
               quality: 80
               resizingBehavior: SCALE
             ) {
@@ -149,8 +149,8 @@ export const pageQuery = graphql`
           title
           image {
             fluid(
-              maxWidth: 1180
-              maxHeight: 480
+              maxWidth: 800
+              maxHeight: 325
               quality: 80
               resizingBehavior: PAD
               background: "rgb:000000"

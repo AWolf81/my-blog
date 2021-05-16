@@ -14,7 +14,6 @@ import MainPane from '../MainPane'
 import Logo from '../Logo'
 import Search from '../Search'
 import DEFAULTS from '../../defaults';
-import useHasMounted from '../../utils/useHasMounted.js'
 
 const ToggleButton = styled(ReactToggleButton)`
   padding-top: 10px;
@@ -58,7 +57,6 @@ const searchIndices = [
 ]
 
 const Template = ({ children, location, title, slug, twitterCardImage }) => {
-  const hasMounted = useHasMounted();
   const [theme, setTheme] = useState(DEFAULTS.initialTheme)
   
   useEffect(() => {
@@ -98,10 +96,6 @@ const Template = ({ children, location, title, slug, twitterCardImage }) => {
       false
     )
   }, [])
-
-  if (!hasMounted) {
-    return null;
-  }
   
   const toggleTheme = () => {
     const storeTheme = theme => {

@@ -128,7 +128,9 @@ const Template = ({ children, location, title, slug, twitterCardImage }) => {
           <Fragment>
             <GlobalStyles/>
             {!slug ? (
-              <Helmet title={data.site.siteMetadata.title} />
+              <Helmet title={data.site.siteMetadata.title}>
+                <meta name="description" content="Personal tech blog from Alexander Wolf. Blogging about anything tech related. Usually short how-to guides." />
+              </Helmet>
             ) : (
               <Helmet title={title}>
                 <meta

@@ -64,9 +64,7 @@ const Template = ({ children, location, title, slug, twitterCardImage }) => {
   useEffect(() => {
     const loadTheme = () => {
       const storedTheme = window.localStorage.getItem(`${DEFAULTS.blogStorageKey}selectedTheme`);
-      console.log("load theme", storedTheme);
       const theme = storedTheme ? ( storedTheme === 'light' ? light: dark ) : DEFAULTS.initialTheme;
-      console.log("theme", theme);
       setTheme(theme);
     }
 
@@ -76,7 +74,6 @@ const Template = ({ children, location, title, slug, twitterCardImage }) => {
       function(e) {
         const gaProperty = process.env.GOOGLE_TRACKING_ID
   
-        console.log('on accept', gaProperty)
         // Disable tracking if consent statistics is false.
         const disableStr = 'ga-disable-' + gaProperty
   

@@ -59,14 +59,11 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
       <Input
         inputRef={searchBoxRef}
         onFocus={(event) => {
-          console.log(query, searchBoxRef)
-          // if (!focus) {
+          if (!focus) {
             // set caret only if not focused      
             event.target.selectionEnd = query.length
             event.target.selectionStart = query.length
-            console.log(event)
-            // setCaretPosition(searchBoxRef.current, query.length)
-          // }
+          }
           setFocus(true)
         }} {...{ collapse, focus }} />
       <HitsWrapper ref={searchResultsRef} show={query.length > 0 && focus} asGrid={hitsAsGrid}>

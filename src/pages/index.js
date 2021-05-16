@@ -151,7 +151,7 @@ export const pageQuery = graphql`
             fluid(
               maxWidth: 1180
               maxHeight: 480
-              quality: 100
+              quality: 80
               resizingBehavior: PAD
               background: "rgb:000000"
             ) {

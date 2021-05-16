@@ -13,7 +13,13 @@ export default function HTML(props) {
         />
         {props.headComponents}
         <link rel="preconnect" href="//s7.addthis.com" crossOrigin/>
-        <link rel="preconnect" href={`https://${process.env.GATSBY_ALGOLIA_APP_ID}-dsn.algolia.net`} crossOrigin/> 
+        <link
+          rel="preload"
+          href="/static/avenir-400.woff2"
+          as="font"
+          crossOrigin="anonymous"
+          type="font/woff2"
+        />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}

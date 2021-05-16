@@ -12,6 +12,8 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
+        <link rel="preconnect" href="//s7.addthis.com" crossOrigin/>
+        <link rel="preconnect" href={`https://${process.env.GATSBY_ALGOLIA_APP_ID}-dsn.algolia.net`} crossOrigin/> 
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
@@ -27,7 +29,7 @@ export default function HTML(props) {
         {/* <!-- Go to www.addthis.com/dashboard to customize your tools --> */}
         <script async
           type="text/javascript"
-          src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5cc2cac8919668c0"
+          src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5cc2cac8919668c0&async=1&domready=1"
         />
       </body>
     </html>

@@ -64,7 +64,7 @@
   "scripts": {
     "dev": "gatsby develop",
     "build": "cross-env NODE_ENV=PRODUCTION gatsby build",
-    "prebuild": "yarn clean",
+    "prebuild": "npm run clean",
     "clean": "gatsby clean",
     "heroku-postbuild": "gatsby build",
     "serve": "gatsby serve",

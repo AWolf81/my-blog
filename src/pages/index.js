@@ -111,7 +111,7 @@ export const pageQuery = graphql`
             fluid(
               maxWidth: 207
               maxHeight: 116
-              quality: 80
+              quality: 100
               resizingBehavior: SCALE
             ) {
               ...GatsbyContentfulFluid_withWebp
@@ -151,7 +151,7 @@ export const pageQuery = graphql`
             fluid(
               maxWidth: 800
               maxHeight: 325
-              quality: 80
+              quality: 100
               resizingBehavior: PAD
               background: "rgb:000000"
             ) {

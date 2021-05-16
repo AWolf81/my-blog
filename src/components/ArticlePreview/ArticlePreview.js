@@ -6,7 +6,7 @@ import styled from 'styled-components'
 export default ({ article, readingTime }) => (
   <div>
     <Link to={`/${article.slug}`}>
-      {article.heroImage && <Img alt="" fluid={article.heroImage.fluid} />}
+      {article.heroImage && <Img alt={article.title} fluid={article.heroImage.fluid} />}
     </Link>
     <PreviewTitle>
       <Link to={`/${article.slug}`}>{article.title}</Link>

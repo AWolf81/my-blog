@@ -7,6 +7,7 @@ export const Root = styled.div`
   position: relative;
   display: grid;
   grid-gap: 1em;
+  align-self: flex-end;
 `
 
 export const SearchIcon = styled(Search)`
@@ -66,7 +67,15 @@ export const Form = styled.form`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  margin-left: auto;
   padding: 0.5em;
+  margin-right: 2em;
+  @media (max-width: 700px) {
+    /* disable search feature on mobile 
+       improve later, looks weird with current styling
+    */
+    display: none;
+  }
 `
 
 export const HitsWrapper = styled.div`
@@ -78,7 +87,7 @@ export const HitsWrapper = styled.div`
   -webkit-overflow-scrolling: touch;
   position: fixed;
   right: 1vw;
-  top: 60px;
+  top: 70px;
   width: 80vw;
   max-width: 40em;
   box-shadow: 0 0 5px 0;

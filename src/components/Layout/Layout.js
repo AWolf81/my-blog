@@ -15,10 +15,15 @@ import Logo from '../Logo'
 import Search from '../Search'
 import DEFAULTS from '../../defaults';
 
-const ToggleButton = styled(ReactToggleButton)`
-  padding-top: 10px;
-  border: 1px solid white;
+const Wrapper = styled.div`
+  transform: scale(0.7)
 `
+
+const ToggleButton = (props) => (
+  <Wrapper>
+    <ReactToggleButton {...props}/>
+  </Wrapper>
+)
 
 export const GlobalStyles = createGlobalStyle`
 ${css(baseStyles)}
@@ -191,8 +196,9 @@ const Template = ({ children, location, title, slug, twitterCardImage }) => {
 }
 
 const Header = styled.div`
-  display: grid;
-  grid-template-columns: 200px 50px auto 100px;
+  display: flex;
+  /*display: grid;
+  grid-template-columns: 200px 50px auto 100px;*/
   padding-top: 3vmin;
   // padding-right: 3vmin;
 `

@@ -31,8 +31,8 @@ ${css(postStyles)}
 ${css(codeStyles)}
 
 :root {
-  --color-toggle-light: yellow;
-  --color-toggle-dark: bisque;
+  --color-toggle-light: gold;
+  --color-toggle-dark: #ede9e5;
 }
 
 @font-face {

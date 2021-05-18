@@ -40,29 +40,6 @@ class RootIndex extends React.Component {
   }
 }
 
-/* ${css(baseStyles)}; */
-// export const GlobalStyle = createGlobalStyle`
-
-//   @font-face {
-//   font-family: 'Avenir';
-//   font-weight: 400;
-//   font-style: normal;
-//   src: url('/avenir-400.woff2') format('woff2');
-//   font-display: swap;
-// }
-
-// body {
-//   font-family: 'Avenir', Tahoma, Arial, Helvetica, sans-serif;
-//   font-size: 1em;
-//   line-height: 1.65;
-//   color: ${COLORS.black[100]};
-//   /* color: #373f49; */
-//   /* background: #eee; */
-//   background: ${COLORS.lightGray[100]};
-//   margin: 0;
-// }
-// `
-
 export const Wrapper = styled.div`
   width: calc(100% - 10vmin);
   margin: 0 auto;

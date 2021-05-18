@@ -16,7 +16,9 @@ export default {
     body: COLORS.black[100],
     text: lightGray,
     mainPane_bg: darkGray,
-    searchResults_bg: COLORS.darkGray[100]
+    searchResults_bg: COLORS.darkGray[100],
+    searchIcon: lightGray,
+    searchText: COLORS.blue[100]
   },
   timing: {
       shortTrans: '0.2s'

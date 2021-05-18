@@ -6,8 +6,8 @@ export const COLORS = {
   lightGray: {
     100: 'rgba(200, 211, 213, 1)',
   },
-  wildBlue: {
-    100: 'rgba(164, 184, 196, 1)',
+  blue: {
+    100: 'hsl(215, 50%, 23%)',
   },
   darkGray: {
     100: 'hsl(190,10%,10%)',

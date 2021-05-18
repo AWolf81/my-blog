@@ -1,6 +1,6 @@
 [Build]
-  Publish = "public/"
-  command = "yarn build"
+  Publish = "public"
+  command = "npm run build"
   Functions = ""
 
 [Build.environment]

@@ -1,12 +1,13 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Search } from 'styled-icons/fa-solid/Search'
-import { Algolia } from 'styled-icons/fa-brands/Algolia'
+import { Search } from '@styled-icons/fa-solid/Search'
+import { Algolia } from '@styled-icons/fa-brands/Algolia'
 
 export const Root = styled.div`
   position: relative;
   display: grid;
   grid-gap: 1em;
+  align-self: flex-end;
 `
 
 export const SearchIcon = styled(Search)`
@@ -16,13 +17,13 @@ export const SearchIcon = styled(Search)`
 
 const focus = css`
   background: white;
-  color: ${props => props.theme.darkBlue};
+  color: ${props => props.theme.colors.searchText};
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   cursor: text;
-  width: 8em;
-  padding: 0.2em;
+  width: 15em;
+  padding: 0.4em;
   + ${SearchIcon} {
-    color: ${props => props.theme.darkBlue};
+    color: ${props => props.theme.colors.gray};
     margin: 0.3em;
   }
 `
@@ -30,20 +31,19 @@ const focus = css`
 const collapse = css`
   width: 0;
   cursor: pointer;
-  color: ${props => props.theme.lightBlue};
   + ${SearchIcon} {
-    color: black;
+    color: ${props => props.theme.colors.searchIcon};
   }
   ${props => props.focus && focus}
   margin-left: ${props => (props.focus ? `-1.6em` : `-1em`)};
   padding-left: ${props => (props.focus ? `1.6em` : `1em`)};
   ::placeholder {
-    color: ${props => props.theme.gray};
+    color: ${props => props.theme.colors.gray};
   }
 `
 
 const expand = css`
-  background: ${props => props.theme.veryLightGray};
+  background: ${props => props.theme.colors.veryLightGray};
   width: 6em;
   margin-left: -1.6em;
   padding-left: 1.6em;
@@ -57,8 +57,8 @@ export const Input = styled.input`
   border: none;
   font-size: 1em;
   background: transparent;
-  transition: ${props => props.theme.shortTrans};
-  border-radius: ${props => props.theme.smallBorderRadius};
+  transition: ${props => props.theme.timing.shortTrans};
+  border-radius: ${props => props.theme.styles.smallBorderRadius};
   ${props => (props.collapse ? collapse : expand)};
 `
 
@@ -66,7 +66,15 @@ export const Form = styled.form`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  margin-left: auto;
   padding: 0.5em;
+  margin-right: 2em;
+  @media (max-width: 700px) {
+    /* disable search feature on mobile 
+       improve later, looks weird with current styling
+    */
+    display: none;
+  }
 `
 
 export const HitsWrapper = styled.div`
@@ -77,22 +85,23 @@ export const HitsWrapper = styled.div`
   z-index: 2;
   -webkit-overflow-scrolling: touch;
   position: absolute;
-  right: 0;
-  top: calc(100% + 0.5em);
+  right: 1vw;
+  top: 70px;
   width: 80vw;
-  max-width: 30em;
+  max-width: 40em;
   box-shadow: 0 0 5px 0;
   padding: 0.7em 1em 0.4em;
-  background: white;
-  border-radius: ${props => props.theme.smallBorderRadius};
+  background: ${props => props.theme.colors.searchResults_bg};
+  border-radius: ${props => props.theme.styles.smallBorderRadius};
   > * + * {
     padding-top: 1em !important;
-    border-top: 2px solid ${props => props.theme.darkGray};
+    border-top: 2px solid ${props => props.theme.colors.darkGray};
   }
   li + li {
     margin-top: 0.7em;
     padding-top: 0.7em;
-    border-top: 1px solid ${props => props.theme.lightGray};
+    padding-bottom: 0.7em;
+    border-top: 1px solid ${props => props.theme.colors.lightGray};
   }
   * {
     margin-top: 0;
@@ -102,8 +111,9 @@ export const HitsWrapper = styled.div`
     list-style: none;
   }
   mark {
-    color: ${props => props.theme.lightBlue};
-    background: ${props => props.theme.darkBlue};
+    color: ${props => props.theme.colors.highlight};
+    background: ${props => props.theme.colors.highlight_bg}; 
+    padding: 0.4em 0;
   }
   header {
     display: flex;
@@ -111,9 +121,9 @@ export const HitsWrapper = styled.div`
     margin-bottom: 0.3em;
     h3 {
       color: white;
-      background: ${props => props.theme.gray};
+      background: ${props => props.theme.colors.gray};
       padding: 0.1em 0.4em;
-      border-radius: ${props => props.theme.smallBorderRadius};
+      border-radius: ${props => props.theme.styles.smallBorderRadius};
     }
   }
   h3 {
@@ -122,12 +132,19 @@ export const HitsWrapper = styled.div`
   h4 {
     margin-bottom: 0.3em;
   }
+
+  @media (max-width: 700px) {
+    /* disable search feature on mobile 
+       improve later, looks weird with current styling
+    */
+    display: none;
+  }
 `
 
 export const PoweredBy = () => (
   <span css="font-size: 0.6em; text-align: end; padding: 0;">
     Powered by{` `}
-    <a href="https://algolia.com">
+    <a href="https://algolia.com" rel="noreferrer">
       <Algolia size="1em" /> Algolia
     </a>
   </span>

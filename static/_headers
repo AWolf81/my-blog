@@ -1,0 +1,7 @@
+/styles/*.woff2
+    cache-control: public
+    cache-control: max-age=604800
+
+/styles/*.ico
+    cache-control: public
+    cache-control: max-age=604800

@@ -2,20 +2,20 @@ import React from 'react'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
-export default ({ data }) => (
+export default ({ name, title, image, shortBio, readingTime }) => (
   <Wrapper>
-    <HeroImage alt={data.name} sizes={data.heroImage.sizes} />
+    <HeroImage fluid={image.fluid}/>
     <HeroDetails>
-      <HeroHeadline>{data.name}</HeroHeadline>
+      <HeroHeadline>{name}</HeroHeadline>
       <Title>
-        {data.title}
-        <span>{data.readingTime}</span>
+        {title}
+        <span>{readingTime}</span>
       </Title>
       <div
         dangerouslySetInnerHTML={{
-          __html: data.shortBio.childMarkdownRemark.html
+          __html: shortBio?.childMarkdownRemark?.html
         }}
-      />
+        />
     </HeroDetails>
   </Wrapper>
 )

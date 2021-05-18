@@ -2,17 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
-import { GlobalStyle } from './index';
 
-export default ({ location }) => (
+const PageNotFound = ({ location }) => (
   <Layout location={location}>
-    <GlobalStyle />
     <Wrapper>
       <NotFoundNumber>404</NotFoundNumber>
       <Message>Oops! Sorry, looks like there is nothing here</Message>
     </Wrapper>
   </Layout>
-);
+)
+export default PageNotFound;
 
 const Wrapper = styled.div`
   display: flex;

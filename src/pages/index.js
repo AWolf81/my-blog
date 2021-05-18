@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 
-import styled, { createGlobalStyle, css } from 'styled-components'
-import baseStyles from '../styles/base.css'
+import styled from 'styled-components'
 
 import Hero from '../components/Hero'
 import ArticlePreview from '../components/ArticlePreview'
@@ -19,53 +18,27 @@ class RootIndex extends React.Component {
       node.body && `${node.body.childMarkdownRemark.fields.readingTime.text}`
 
     return (
-      <Fragment>
-        <GlobalStyle />
-        <Layout location={this.props.location}>
-          <Hero data={author.node} />
-          <Wrapper>
-            <SectionHeadline>Recent articles</SectionHeadline>
-            <ArticleList>
-              {posts.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ArticlePreview
-                      article={node}
-                      readingTime={postReadingTime(node)}
-                    />
-                  </li>
-                )
-              })}
-            </ArticleList>
-          </Wrapper>
-        </Layout>
-      </Fragment>
+      <Layout location={this.props.location}>
+        <Hero {...author.node} />
+        <Wrapper>
+          <SectionHeadline>Recent articles</SectionHeadline>
+          <ArticleList>
+            {posts.map(({ node }) => {
+              return (
+                <li key={node.slug}>
+                  <ArticlePreview
+                    article={node}
+                    readingTime={postReadingTime(node)}
+                  />
+                </li>
+              )
+            })}
+          </ArticleList>
+        </Wrapper>
+      </Layout>
     )
   }
 }
-
-export const GlobalStyle = createGlobalStyle`
-  /* ${css(baseStyles)}; */
-
-  @font-face {
-  font-family: 'Avenir';
-  font-weight: 400;
-  font-style: normal;
-  src: url('/avenir-400.woff2') format('woff2');
-  font-display: swap;
-}
-
-body {
-  font-family: 'Avenir', Tahoma, Arial, Helvetica, sans-serif;
-  font-size: 1em;
-  line-height: 1.65;
-  color: ${COLORS.black[100]};
-  /* color: #373f49; */
-  /* background: #eee; */
-  background: ${COLORS.lightGray[100]};
-  margin: 0;
-}
-`
 
 export const Wrapper = styled.div`
   width: calc(100% - 10vmin);
@@ -112,13 +85,13 @@ export const pageQuery = graphql`
           publishDate(formatString: "MMMM Do, YYYY")
           tags
           heroImage {
-            sizes(
-              maxWidth: 350
-              maxHeight: 196
-              quality: 80
+            fluid(
+              maxWidth: 207
+              maxHeight: 116
+              quality: 100
               resizingBehavior: SCALE
             ) {
-              ...GatsbyContentfulSizes_withWebp
+              ...GatsbyContentfulFluid_withWebp
             }
           }
           body {
@@ -140,7 +113,7 @@ export const pageQuery = graphql`
       }
     }
     allContentfulPerson(
-      filter: { id: { eq: "3c56de93-d279-5889-8563-5298ad412080" } }
+      filter: { id: { eq: "9821b955-1f02-5cb5-b128-5cc6036831df" } }
     ) {
       edges {
         node {
@@ -151,15 +124,15 @@ export const pageQuery = graphql`
             }
           }
           title
-          heroImage: image {
-            sizes(
-              maxWidth: 1180
-              maxHeight: 480
+          image {
+            fluid(
+              maxWidth: 800
+              maxHeight: 325
               quality: 100
               resizingBehavior: PAD
               background: "rgb:000000"
             ) {
-              ...GatsbyContentfulSizes_withWebp
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

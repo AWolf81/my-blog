@@ -63,7 +63,7 @@
   },
   "scripts": {
     "dev": "gatsby develop",
-    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true ACTIVE_ENV=production gatsby build --log-pages",
     "clean": "gatsby clean",
     "heroku-postbuild": "gatsby build",
     "serve": "gatsby serve",

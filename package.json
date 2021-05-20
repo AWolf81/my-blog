@@ -2,7 +2,7 @@
   "name": "my-blog",
   "description": "Tech Blog from Alexander Wolf",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": "AWolf81 <awolf2904@gmail.com>",
   "bugs": {
     "url": "https://github.com/AWolf81/my-blog/issues"
@@ -63,7 +63,7 @@
   },
   "scripts": {
     "dev": "gatsby develop",
-    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "build": "cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true ACTIVE_ENV=production gatsby build --log-pages",
     "clean": "gatsby clean",
     "heroku-postbuild": "gatsby build",
     "serve": "gatsby serve",

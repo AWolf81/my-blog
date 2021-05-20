@@ -2,7 +2,7 @@ const queries = require('./src/utils/algolia')
 let contentfulConfig
 require('dotenv').config()
 
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.ACTIVE_ENV === 'production'
 
 try {
   // Load the Contentful config from the .contentful.json

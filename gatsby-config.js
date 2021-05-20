@@ -108,113 +108,112 @@ const config = {
         // Add any options here
       }
     },
-    // testwise disable feed plugin
-    // {
-    //   resolve: `gatsby-plugin-feed`,
-    //   options: {
-    //     query: `
-    //       {
-    //         site {
-    //           siteMetadata {
-    //             title
-    //             description
-    //             siteUrl
-    //             site_url: siteUrl
-    //           }
-    //         }
-    //         logo: file(name: {eq: "AW_Blog_Logo"}) {
-    //           publicURL
-    //         }
-    //         avatar: file(name: {eq: "avatar"}) {
-    //           childImageSharp {
-    //             fixed(width: 400) {
-    //               src
-    //             }
-    //           }
-    //         }
-    //       }
-    //     `,
-    //     // mostly copied from default in gatsby-plugin-feed source code
-    //     // but adding a custom namespace
-    //     setup: ({
-    //       query: {
-    //         site: { siteMetadata },
-    //         avatar,
-    //         logo,
-    //         ...rest
-    //       }
-    //     }) => {
-    //       return {
-    //         ...siteMetadata,
-    //         ...rest,
-    //         custom_namespaces: {
-    //           webfeeds: 'http://webfeeds.org/rss/1.0'
-    //         },
-    //         custom_elements: [
-    //           {
-    //             'webfeeds:icon': siteMetadata.siteUrl + logo.publicURL
-    //           },
-    //           { 'webfeeds:logo': siteMetadata.siteUrl + logo.publicURL }
-    //         ]
-    //       }
-    //     },
-    //     feeds: [
-    //       {
-    //         serialize: ({ query: { site, allContentfulBlogPost } }) => {
-    //           return allContentfulBlogPost.edges.map(edge => {
-    //             return Object.assign({}, edge.node, {
-    //               description:
-    //                 edge.node.childContentfulBlogPostDescriptionTextNode
-    //                   .childMarkdownRemark.excerpt,
-    //               date: edge.node.updatedAt,
-    //               url: site.siteMetadata.siteUrl + edge.node.slug,
-    //               guid: site.siteMetadata.siteUrl + edge.node.slug,
-    //               image_url: edge.node.heroImage.fixed.srcWebp,
-    //               custom_elements: [].concat(
-    //                 {
-    //                   'content:encoded': edge.node.body.childMarkdownRemark.html
-    //                 },
-    //                 edge.node.tags.map(tag => ({ category: tag }))
-    //               )
-    //             })
-    //           })
-    //         },
-    //         query: `
-    // {
-    //   allContentfulBlogPost(limit: 1000, sort: { order: DESC, fields: [updatedAt]}) {
-    //     edges {
-    //       node {
-    //         id
-    //         title
-    //         slug
-    //         tags
-    //         heroImage {
-    //           fixed(width: 400) {
-    //             srcWebp
-    //           }
-    //         }
-    //         updatedAt
-    //         childContentfulBlogPostDescriptionTextNode {
-    //           childMarkdownRemark {
-    //             excerpt
-    //           }
-    //         }
-    //         body {
-    //           childMarkdownRemark {
-    //             html
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-    //         `,
-    //         output: '/rss.xml',
-    //         title: 'RSS Feed'
-    //       }
-    //     ]
-    //   }
-    // },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+            logo: file(name: {eq: "AW_Blog_Logo"}) {
+              publicURL
+            }
+            avatar: file(name: {eq: "avatar"}) {
+              childImageSharp {
+                fixed(width: 400) {
+                  src
+                }
+              }
+            }
+          }
+        `,
+        // mostly copied from default in gatsby-plugin-feed source code
+        // but adding a custom namespace
+        setup: ({
+          query: {
+            site: { siteMetadata },
+            avatar,
+            logo,
+            ...rest
+          }
+        }) => {
+          return {
+            ...siteMetadata,
+            ...rest,
+            custom_namespaces: {
+              webfeeds: 'http://webfeeds.org/rss/1.0'
+            },
+            custom_elements: [
+              {
+                'webfeeds:icon': siteMetadata.siteUrl + logo.publicURL
+              },
+              { 'webfeeds:logo': siteMetadata.siteUrl + logo.publicURL }
+            ]
+          }
+        },
+        feeds: [
+          {
+            serialize: ({ query: { site, allContentfulBlogPost } }) => {
+              return allContentfulBlogPost.edges.map(edge => {
+                return Object.assign({}, edge.node, {
+                  description:
+                    edge.node.childContentfulBlogPostDescriptionTextNode
+                      .childMarkdownRemark.excerpt,
+                  date: edge.node.updatedAt,
+                  url: site.siteMetadata.siteUrl + edge.node.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.slug,
+                  image_url: edge.node.heroImage.fixed.srcWebp,
+                  custom_elements: [].concat(
+                    {
+                      'content:encoded': edge.node.body.childMarkdownRemark.html
+                    },
+                    edge.node.tags.map(tag => ({ category: tag }))
+                  )
+                })
+              })
+            },
+            query: `
+    {
+      allContentfulBlogPost(limit: 1000, sort: { order: DESC, fields: [updatedAt]}) {
+        edges {
+          node {
+            id
+            title
+            slug
+            tags
+            heroImage {
+              fixed(width: 400) {
+                srcWebp
+              }
+            }
+            updatedAt
+            childContentfulBlogPostDescriptionTextNode {
+              childMarkdownRemark {
+                excerpt
+              }
+            }
+            body {
+              childMarkdownRemark {
+                html
+              }
+            }
+          }
+        }
+      }
+    }
+            `,
+            output: '/rss.xml',
+            title: 'RSS Feed'
+          }
+        ]
+      }
+    },
     {
       resolve: `gatsby-plugin-algolia`,
       options: {

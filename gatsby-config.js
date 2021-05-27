@@ -108,7 +108,8 @@ const config = {
         // Add any options here
       }
     },
-    {
+    // workaround plugin issue during preview build
+    ...(isProduction ? [{
       resolve: `gatsby-plugin-feed`,
       options: {
         query: `
@@ -213,7 +214,7 @@ const config = {
           }
         ]
       }
-    },
+    }] : []),
     {
       resolve: `gatsby-plugin-algolia`,
       options: {

@@ -6,5 +6,6 @@
 [Build.environment]
   NODE_ENV = "PRODUCTION"
 
-[context.devel.environment]
-  NODE_ENV = "DEVELOPMENT"
+[context.devel]
+  # testwise add the command here --> once merged to master remove and change in build
+  command = "npm start build"

@@ -5,8 +5,8 @@ require("dotenv").config();
 module.exports = {
   scripts: {
     dev: 'gatsby develop',
-    build: 'cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true ACTIVE_ENV=production gatsby build --log-pages',
-    postbuild: 'npm start percy',
+    build: 'nps buildGatsby percy',
+    buildGatsby: 'cross-env GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true ACTIVE_ENV=production gatsby build --log-pages',
     clean: 'gatsby clean',
     herokuPostbuild: 'gatsby build',
     percy: `cross-env PERCY=${process.env.PERCY_TOKEN} npx percy snapshot ./public`,

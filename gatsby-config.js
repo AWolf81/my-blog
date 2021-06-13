@@ -34,7 +34,7 @@ const config = {
   siteMetadata: {
     title: 'Blog - Alexander Wolf',
     description: 'Blogging about web development mainly frontend coding',
-    siteUrl: 'https://blog.alexanderwolf.tech/',
+    siteUrl: 'https://blog.alexanderwolf.tech',
     twitterHandle: '@awolf81'
   },
   plugins: [

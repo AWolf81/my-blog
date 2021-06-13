@@ -150,7 +150,7 @@ const Template = ({ children, location, title, slug, twitterCardImage }) => {
                 <meta name="twitter:creator" content="@awolf81" />
                 <meta
                   property="og:url"
-                  content={`${data.site.siteMetadata.siteUrl}${slug}`}
+                  content={`${data.site.siteMetadata.siteUrl}/${slug}`}
                 />
                 <meta property="og:title" content={title} />
                 <meta property="og:image" content={twitterCardImage} />
@@ -164,7 +164,7 @@ const Template = ({ children, location, title, slug, twitterCardImage }) => {
                 <script type="text/javascript">
                   {`
                 var addthis_share = {
-                  url: "${data.site.siteMetadata.siteUrl}${slug}",
+                  url: "${data.site.siteMetadata.siteUrl}/${slug}",
                   title: "${title.split('|')[0].trim()}",
                   passthrough : {
                     twitter: {

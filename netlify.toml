@@ -1,11 +1,7 @@
 [Build]
   Publish = "public"
-  command = "npm run build"
+  command = "npm start build"
   Functions = ""
 
 [Build.environment]
   NODE_ENV = "PRODUCTION"
-
-[context.devel]
-  # testwise add the command here --> once merged to master remove and change in build
-  command = "npm start build"

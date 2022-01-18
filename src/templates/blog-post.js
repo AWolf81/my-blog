@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState, useContext } from 'react'
 import { graphql } from 'gatsby'
 import { DiscussionEmbed } from 'disqus-react'
-import styled, { useTheme  } from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 import Layout from '../components/Layout'
 import { HeroImage, Wrapper as HeroWrapper } from '../components/Hero/Hero'
@@ -11,7 +11,7 @@ import { Wrapper as MainWrapper, SectionHeadline } from '../pages'
 import { light } from '../theme'
 // import DEFAULTS from '../../defaults.js'
 
-const ThemedDiscussionEmbed = ({disqusConfig}) => {
+const ThemedDiscussionEmbed = ({ disqusConfig }) => {
   const theme = useTheme()
   const disqusShortname = 'blog-awolf'
 
@@ -26,21 +26,27 @@ const ThemedDiscussionEmbed = ({disqusConfig}) => {
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
   const post = data.contentfulBlogPost
-  const { title: siteTitle } = data.site.siteMetadata
+  const {
+    title: siteTitle,
+    description: siteDescription,
+  } = data.site.siteMetadata
   const disqusConfig = {
     identifier: post.id,
-    title: post.title
+    title: post.title,
   }
   const { prev, next, buildDate } = pageContext
   return (
     <Layout
-        location={location}
-        slug={post.slug}
-        title={`${post.title} | ${siteTitle}`}
-        twitterCardImage={
-          post.heroImage && `https:${post.heroImage.fixed.srcWebp}`
-        }
-      >
+      location={location}
+      slug={post.slug}
+      title={`${post.title} | ${siteTitle}`}
+      description={
+        post.slug ? post.body.childMarkdownRemark.excerpt : siteDescription
+      }
+      twitterCardImage={
+        post.heroImage && `https:${post.heroImage.fixed.srcWebp}`
+      }
+    >
       <MainWrapper>
         <HeroWrapper>
           {post.heroImage ? (
@@ -57,7 +63,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           <SectionHeadline>{post.title}</SectionHeadline>
           <p
             style={{
-              display: 'block'
+              display: 'block',
             }}
           >
             {post.publishDate} -{' '}
@@ -66,10 +72,10 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
         </HeadLine>
         <div
           dangerouslySetInnerHTML={{
-            __html: post.body.childMarkdownRemark.html
+            __html: post.body.childMarkdownRemark.html,
           }}
         />
-        <ThemedDiscussionEmbed disqusConfig={disqusConfig}/>
+        <ThemedDiscussionEmbed disqusConfig={disqusConfig} />
         <PrevNext prev={prev} next={next} />
       </MainWrapper>
       <Footer date={buildDate} />
@@ -92,6 +98,7 @@ export const pageQuery = graphql`
         title
         siteUrl
         twitterHandle
+        description
       }
     }
     contentfulBlogPost(slug: { eq: $slug }) {
@@ -102,8 +109,8 @@ export const pageQuery = graphql`
         fixed(width: 800) {
           srcWebp
         }
-        fluid(maxWidth:1920, quality: 100, background: "rgb:000000") {
-					...GatsbyContentfulFluid_withWebp,
+        fluid(maxWidth: 1920, quality: 100, background: "rgb:000000") {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       body {
@@ -114,6 +121,7 @@ export const pageQuery = graphql`
               text
             }
           }
+          excerpt
         }
       }
     }

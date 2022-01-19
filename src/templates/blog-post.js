@@ -109,7 +109,12 @@ export const pageQuery = graphql`
         fixed(width: 800) {
           srcWebp
         }
-        fluid(maxWidth: 1920, quality: 100, background: "rgb:000000") {
+        fluid(
+          maxWidth: 1920
+          quality: 100
+          background: "rgb:000000"
+          toFormat: PNG
+        ) {
           ...GatsbyContentfulFluid_withWebp
         }
       }

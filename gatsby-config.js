@@ -127,7 +127,7 @@ const config = {
             }
             avatar: file(name: {eq: "avatar"}) {
               childImageSharp {
-                fixed(width: 400) {
+                fixed(width: 400, toFormat: PNG) {
                   src
                 }
               }
@@ -189,7 +189,7 @@ const config = {
             slug
             tags
             heroImage {
-              fixed(width: 400) {
+              fixed(width: 400, toFormat: PNG) {
                 srcWebp
               }
             }

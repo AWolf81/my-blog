@@ -90,6 +90,7 @@ export const pageQuery = graphql`
               maxHeight: 116
               quality: 100
               resizingBehavior: SCALE
+              toFormat: PNG
             ) {
               ...GatsbyContentfulFluid_withWebp
             }

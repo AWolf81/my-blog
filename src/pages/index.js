@@ -7,8 +7,6 @@ import Hero from '../components/Hero'
 import ArticlePreview from '../components/ArticlePreview'
 import Layout from '../components/Layout'
 
-import { COLORS } from '../constants'
-
 class RootIndex extends React.Component {
   render() {
     const { data } = this.props
@@ -90,6 +88,7 @@ export const pageQuery = graphql`
               maxHeight: 116
               quality: 100
               resizingBehavior: SCALE
+              toFormat: PNG
             ) {
               ...GatsbyContentfulFluid_withWebp
             }

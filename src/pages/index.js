@@ -7,8 +7,6 @@ import Hero from '../components/Hero'
 import ArticlePreview from '../components/ArticlePreview'
 import Layout from '../components/Layout'
 
-import { COLORS } from '../constants'
-
 class RootIndex extends React.Component {
   render() {
     const { data } = this.props

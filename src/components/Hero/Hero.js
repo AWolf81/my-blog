@@ -2,6 +2,28 @@ import React from 'react'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
+const MastodonVerificationLink = () => (
+  <MastodonWrapper>
+    I'm also tooting on Mastodon<Link href="https://mastodontech.de/@awolf" rel="me"><MastodonLogo src="mastodon-logo.svg" title="Visit Mastodontech.de"/>@awolf@mastodontech.de</Link>
+  </MastodonWrapper>
+)
+
+const Link = styled.a`
+  display: flex;
+  align-items:center;
+`
+const MastodonWrapper = styled.div`
+  text-align: left;
+  margin-bottom: 0.5em;
+`
+
+const MastodonLogo = styled.img`
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  padding: 0.2em;
+`
+
 export default ({ name, title, image, shortBio, readingTime }) => (
   <Wrapper>
     <HeroImage fluid={image.fluid}/>
@@ -16,6 +38,7 @@ export default ({ name, title, image, shortBio, readingTime }) => (
           __html: shortBio?.childMarkdownRemark?.html
         }}
         />
+      <MastodonVerificationLink/>
     </HeroDetails>
   </Wrapper>
 )
